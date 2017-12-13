@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/managment_view_overall_report_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.donavan.visaulfusion.ManagmentViewOverallReport">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:hint="PROGRESS STEP:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/six"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+
+            <TextView
+                android:hint="VALIDATED STORES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/seven"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+
+                android:hint="BRAND:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/one"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+
+            <TextView
+                android:hint="TUSKER"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/two"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+
+                android:hint="TIER: 1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/three"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:hint="TOTAL ALLOCATION"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/eight"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+
+            <TextView
+                android:hint="145"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nine"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:hint="TOTAL VALIDATED"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ten"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+
+            <TextView
+                android:hint="76"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/eleven"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gridViewCustom4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:layout_marginTop="150dp" />
+
+</RelativeLayout>

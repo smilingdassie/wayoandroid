@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/managment_progress_step_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.example.donavan.visaulfusion.ManagmentSelectReport">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                >
+
+            <Button
+                android:text="VALIDATED STORES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button3"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:drawableRight="@drawable/plus"
+                android:paddingRight="5dp"
+                android:onClick="viewReports"/>
+
+
+
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <Button
+                android:text="STORES AWAITING TSS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button2"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:drawableRight="@drawable/plus"
+                android:paddingRight="5dp"
+                android:onClick="viewReports"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:text="STORES TSS COMPLETED"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button4"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:drawableRight="@drawable/plus"
+                android:paddingRight="5dp"
+                android:onClick="viewReports"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:text="STORES AWAITING DISPATCH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button5"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:drawableRight="@drawable/plus"
+                android:paddingRight="5dp"
+                android:onClick="viewReports"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:text="STORES DISPATCHED"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button6"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:drawableRight="@drawable/plus"
+                android:paddingRight="5dp"
+                android:onClick="viewReports"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:text="STORES AWAITING INSTALLATION"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button7"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:drawableRight="@drawable/plus"
+                android:paddingRight="5dp"
+                android:onClick="viewReports"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <Button
+                android:text="STORES INSTALLED"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button8"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:drawableRight="@drawable/plus"
+                android:paddingRight="5dp"
+                android:onClick="viewReports"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
