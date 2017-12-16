@@ -1,13 +1,40 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vf.admin.visualfusion.FragmentLoadScreen">
+    tools:context="com.vf.admin.visualfusion.FragmentLoadScreen"
+    android:id="@+id/Linearlayot_for_fragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="This is the first Fragment" />
+        android:layout_margin="20dp"
+        android:src="@mipmap/home_scan"
+        android:layout_weight=".10"/>
 
-</FrameLayout>
+    <TextView
+        style="@style/Heading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".20"
+        android:gravity="center"
+        android:text="Hi there! n\ Lets' scan a barcode "
+       />
+
+
+    <Button
+        style="@style/Button"
+        android:id="@+id/buttonToScan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Lets Go"
+        android:onClick="buttonToScan"
+        android:background="@drawable/buttonblue"
+        android:layout_weight=".20"
+        />
+
+</LinearLayout>

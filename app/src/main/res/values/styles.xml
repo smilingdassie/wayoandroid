@@ -3,9 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#0f9fc3</item>
-        <item name="colorPrimaryDark">#f8941e</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#41969b</item>
+        <item name="colorPrimaryDark">#b60729</item>
+        <item name="colorAccent">#fefede</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,5 +18,30 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <!--Heading text-->
+    <style name="Heading" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">#323232</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+
+    </style>
+
+    <style name="Button" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+
+    </style>
+
+
 
 </resources>

@@ -13,6 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -20,12 +23,26 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        LinearLayout Layoutpop1 = (LinearLayout)this.findViewById(R.id.Linearlayot_for_fragment);
+        Animation expandIn = AnimationUtils.loadAnimation(this, R.anim.animate_expand_in);
+        Layoutpop1.startAnimation(expandIn);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +61,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -84,12 +102,16 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.scan_home) {
             Toast.makeText(this,"this is  fragment One", Toast.LENGTH_LONG).show();
             FragmentLoadScreen cameraFragment = new FragmentLoadScreen();
             FragmentManager manager = getFragmentManager();
             manager.beginTransaction().replace(R.id.Linearlayot_for_fragment, cameraFragment,cameraFragment.getTag()).commit();
 
+            //pop animation for layout
+            LinearLayout Layoutpop1 = (LinearLayout)this.findViewById(R.id.Linearlayot_for_fragment);
+            Animation expandIn = AnimationUtils.loadAnimation(this, R.anim.animate_expand_in);
+            Layoutpop1.startAnimation(expandIn);
 
 
         } else if (id == R.id.nav_gallery) {
@@ -102,9 +124,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+
+        }  else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
@@ -114,4 +136,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
 }
