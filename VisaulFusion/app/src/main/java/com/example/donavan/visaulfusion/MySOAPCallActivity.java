@@ -5,7 +5,7 @@ package com.example.donavan.visaulfusion;
  */
 
 
-import android.support.v7.app.ActionBarActivity;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -83,7 +83,7 @@ public class MySOAPCallActivity
     public  final String WSDL_TARGET_NAMESPACE = "http://tempuri.org/";
 
     //LIVE
-    public  final String SOAP_ADDRESS = "http://www.winninginontrade.com/VFEFCIPWebService.asmx";
+    public  final String SOAP_ADDRESS = "http://testingwayo2.winninginontrade.miid.co.za/WayoWebWebService.asmx";
     //public  final String SOAP_ADDRESS = "http://www.orbitdevtest.co.za/VFEFCIPWebService.asmx";
     public MySOAPCallActivity()
     {

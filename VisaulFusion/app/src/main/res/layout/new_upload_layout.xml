@@ -87,6 +87,20 @@
                 android:layout_marginTop="10dp"
 
                 android:layout_weight="1" />
+            <!--DANIEL: I want to add below textbox-->
+            <TextView
+                android:hint="Barcode "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtMaxQtyHeader"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+
+
 
             <TextView
                 android:hint="Img Count"

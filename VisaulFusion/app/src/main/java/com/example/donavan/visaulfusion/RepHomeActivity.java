@@ -26,7 +26,9 @@ public class RepHomeActivity extends AppCompatActivity  {
 
 
     @Override
-    public void onBackPressed() {     }      @Override  protected void onCreate(Bundle savedInstanceState) {
+    public void onBackPressed() {     }
+
+    @Override  protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.rep_home_layout);

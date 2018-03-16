@@ -63,6 +63,9 @@ public class InstallUnitaryList extends AppCompatActivity {
             TextView txtBarcodeHeader = (TextView)  findViewById(R.id.txtBarcodeHeader);
             txtBarcodeHeader.setText("Accepted");
 
+           // TextView txtBudgetQtyHeader = (TextView)  findViewById(R.id.txtBudgetQtyHeader);
+           // txtBudgetQtyHeader.setText("Max Qty");
+
         }
         else{
             Button btnUploadJobCard = (Button) findViewById(R.id.btnUploadJobCard);
