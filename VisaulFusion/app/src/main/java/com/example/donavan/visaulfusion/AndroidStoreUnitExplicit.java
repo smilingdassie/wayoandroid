@@ -14,6 +14,8 @@ public class AndroidStoreUnitExplicit {
     public String ImagePath;
     public String ItemTypeName;
     public int MaxQuantityFromMatrix;
+
+    public int QuantitySelected;
     public int ImageCount;
     public int Enumerate;
     public String StoreNameURN;
@@ -124,7 +126,13 @@ public class AndroidStoreUnitExplicit {
     public void setMaxQuantityFromMatrix(int MaxQuantityFromMatrix) {
         this.MaxQuantityFromMatrix = MaxQuantityFromMatrix;
     }
+    public int getQuantitySelected() {
+        return QuantitySelected;
+    }
 
+    public void setQuantitySelected(int QuantitySelected) {
+        this.QuantitySelected = QuantitySelected;
+    }
 
 
 }

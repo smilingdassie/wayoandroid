@@ -168,6 +168,8 @@ public class InstallUnitaryList extends AppCompatActivity {
                 intent.putExtra("RequestID", RequestID);
                 intent.putExtra("ID", RequestID);
 
+                intent.putExtra("Quantity", storeunit.getMaxQuantityFromMatrix());
+
                 startActivity(intent); finish();
 
             }

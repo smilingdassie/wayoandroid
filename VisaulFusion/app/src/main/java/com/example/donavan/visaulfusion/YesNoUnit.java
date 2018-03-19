@@ -3,6 +3,7 @@ package com.example.donavan.visaulfusion;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +26,8 @@ public class YesNoUnit extends AppCompatActivity {
     public int mStoreItemID;
     public String mStoreNameURN;
     public String mWhyNo;
-
+    public int mQuantity;
+    public int mQuantitySelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class YesNoUnit extends AppCompatActivity {
         mStoreItemID = getIntent().getIntExtra("StoreItemID",0);
         mStoreNameURN = getIntent().getStringExtra("StoreNameURN");
         mWhyNo = getIntent().getStringExtra("WhyNo");
+        mQuantity = getIntent().getIntExtra("Quantity",0);
 
         RadioButton radioYes = (RadioButton)findViewById(R.id.radioYes);
         RadioButton radioNo = (RadioButton)findViewById(R.id.radioNo);
@@ -46,6 +49,12 @@ public class YesNoUnit extends AppCompatActivity {
         EditText editWhyNo = (EditText)  findViewById(R.id.editWhyNo);
         Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
         editWhyNo.setText(mWhyNo);
+
+        EditText editQuantity = (EditText)  findViewById(R.id.editQuantity);
+
+        editQuantity.setText(Integer.toString(mQuantity));
+        editQuantity.setHint("[" + Integer.toString(mQuantity) + "]");
+        editQuantity.setFilters(new InputFilter[]{ new InputFilterMinMax("0", Integer.toString(mQuantity))});
 
         switch(acceptedByStore)
         {
@@ -183,6 +192,9 @@ public class YesNoUnit extends AppCompatActivity {
         intent.putExtra("AcceptedByStore", mAcceptedByStore);
         EditText editWhyNo = (EditText)  findViewById(R.id.editWhyNo);
         mWhyNo = editWhyNo.getText().toString();
+
+
+
         try {
             FindUnitAndChange(mStoreItemID, mStoreNameURN);
         } catch (JSONException e) {
@@ -212,6 +224,8 @@ public class YesNoUnit extends AppCompatActivity {
         EditText editWhyNo = (EditText)  findViewById(R.id.editWhyNo);
         intent.putExtra("WhyNo", editWhyNo.getText().toString());
         mWhyNo = editWhyNo.getText().toString();
+        EditText editQuantity = (EditText)  findViewById(R.id.editQuantity);
+        mQuantitySelected = Integer.parseInt(editQuantity.getText().toString());
 
         if(mWhyNo.isEmpty() && mAcceptedByStore == 0)
         {
@@ -316,6 +330,9 @@ public class YesNoUnit extends AppCompatActivity {
             storeUnitExplicit.setImageCount(unitExplicit.getImageCount());
             storeUnitExplicit.setItemTypeName(unitExplicit.getItemTypeName());
             storeUnitExplicit.setURN(unitExplicit.getURN());
+            
+            storeUnitExplicit.setQuantitySelected(mQuantitySelected);
+            
             //storeUnitExplicit.setWhyNo(unitExplicit.getWhyNo());
             //delete original
             androidStoreUnitExplicits.remove(unitExplicit);
