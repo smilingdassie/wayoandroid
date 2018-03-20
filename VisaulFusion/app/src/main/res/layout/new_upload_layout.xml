@@ -113,6 +113,20 @@
                 android:layout_marginTop="10dp"
 
                 android:layout_weight="1" />
+            <!-- extra columb here -->
+            <TextView
+                android:hint="Qty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/col6"
+                android:backgroundTint="#efefef"
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f"
+                android:layout_marginTop="10dp"
+
+                android:layout_weight="1" />
+
+            <!-- close extra columb  -->
         </LinearLayout>
 
 
