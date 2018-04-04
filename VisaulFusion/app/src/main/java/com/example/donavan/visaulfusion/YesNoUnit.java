@@ -36,7 +36,9 @@ public class YesNoUnit extends AppCompatActivity {
         mStoreItemID = getIntent().getIntExtra("StoreItemID",0);
         mStoreNameURN = getIntent().getStringExtra("StoreNameURN");
         mWhyNo = getIntent().getStringExtra("WhyNo");
-        mQuantity = getIntent().getIntExtra("Quantity",0);
+        mQuantitySelected = getIntent().getIntExtra("QuantitySelected",0);
+        mQuantity = getIntent().getIntExtra("MaxQuantity",0);
+
 
         RadioButton radioYes = (RadioButton)findViewById(R.id.radioYes);
         RadioButton radioNo = (RadioButton)findViewById(R.id.radioNo);
@@ -52,7 +54,15 @@ public class YesNoUnit extends AppCompatActivity {
 
         EditText editQuantity = (EditText)  findViewById(R.id.editQuantity);
 
-        editQuantity.setText(Integer.toString(mQuantity));
+        if(mQuantitySelected == 0)
+        {
+            editQuantity.setText(Integer.toString(mQuantity));
+        }
+        else
+        {
+            editQuantity.setText(Integer.toString(mQuantitySelected));
+
+        }
         editQuantity.setHint("[" + Integer.toString(mQuantity) + "]");
         editQuantity.setFilters(new InputFilter[]{ new InputFilterMinMax("0", Integer.toString(mQuantity))});
 
@@ -267,7 +277,8 @@ public class YesNoUnit extends AppCompatActivity {
 
         Integer storeItemID =  getIntent().getIntExtra("StoreItemID",0);
         intent.putExtra("StoreItemID", storeItemID);
-
+        EditText editQuantity = (EditText)  findViewById(R.id.editQuantity);
+        mQuantitySelected = Integer.parseInt(editQuantity.getText().toString());
         try {
             FindUnitAndChange(mStoreItemID, mStoreNameURN);
         } catch (JSONException e) {

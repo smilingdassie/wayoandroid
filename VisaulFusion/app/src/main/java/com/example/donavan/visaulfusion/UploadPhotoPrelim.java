@@ -18,10 +18,10 @@ public class UploadPhotoPrelim extends AppCompatActivity {
         setContentView(R.layout.activity_upload_photo_prelim);
 
         int Enumerate = getIntent().getIntExtra("Enumerate", 0);
-    if(Enumerate ==0){
+    //if(Enumerate ==0){
     Button btn = (Button)findViewById(R.id.btnBarcode);
         btn.setVisibility(View.GONE);
-    }
+   // }
 
 
     }

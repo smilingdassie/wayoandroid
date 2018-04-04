@@ -77,6 +77,8 @@ public class InstallGridViewUnitary extends  ArrayAdapter <AndroidStoreUnitExpli
     ImageView ImageBase64 = (ImageView) row.findViewById(R.id.imageView);
     TextView Barcode = (TextView) row.findViewById(R.id.txtBarcode);
     TextView txtCount = (TextView) row.findViewById(R.id.txtCount);
+    TextView txtQuantitySelected = (TextView) row.findViewById(R.id.txtQuantitySelected);
+    TextView txtMaxQuantity = (TextView) row.findViewById(R.id.txtMaxQuantity);
 
     //        TextView txtBudgetQty = (TextView) row.findViewById(R.id.txtBudgetQty);
     AndroidStoreUnitExplicit item = data.get(position);
@@ -102,7 +104,8 @@ public class InstallGridViewUnitary extends  ArrayAdapter <AndroidStoreUnitExpli
             Integer imagecount = item.getImageCount();
             txtCount.setText(imagecount.toString());
             ImageBase64.setImageResource(getImageFromDrawables(item.getImagePath()));//R.drawable.dis1);//TODO
-
+            txtQuantitySelected.setText(Integer.toString(item.getQuantitySelected()));
+            txtMaxQuantity.setText(Integer.toString(item.getMaxQuantityFromMatrix()));
 
 }
         catch(Exception ex)

@@ -46,10 +46,10 @@ public class InstallHome extends AppCompatActivity {
         Local.Set(getApplicationContext(), "Today", modifiedDate);
 
         Button btnUnitaryLists = (Button) findViewById(R.id.UnitaryLists);
-        btnUnitaryLists.setVisibility(View.INVISIBLE);
+        btnUnitaryLists.setVisibility(View.GONE);
 
         Button InstallAppoint = (Button) findViewById(R.id.InstallAppoint);
-        InstallAppoint.setVisibility(View.INVISIBLE);
+        InstallAppoint.setVisibility(View.GONE);
 
         String isWebsiteAvailable = Local.Get(getApplicationContext(), "AmIOnline");
 

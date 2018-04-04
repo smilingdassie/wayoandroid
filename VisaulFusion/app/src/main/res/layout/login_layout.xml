@@ -26,7 +26,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/logo"
+                app:srcCompat="@drawable/ic_launcher"
                 android:id="@+id/imageView2"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical|center_horizontal"/>
@@ -42,6 +42,23 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:fontFamily="casual"
+                android:maxWidth="100dp"
+                android:minHeight="60dp"
+                android:minWidth="350dp"
+                android:text="Wayo "
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
             <EditText
                 android:id="@+id/editUserName"
 
@@ -55,7 +72,7 @@
                 android:maxWidth="100dp"
                 android:minHeight="60dp"
                 android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginTop="40dp" />
+                />
 
 
             <EditText
@@ -89,11 +106,13 @@
                 android:backgroundTint="#fdc313"
                 />
             <TextView
-                android:text="app v1.8"
+                android:text="app v2.0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/textView8"
                 android:textSize="14sp" />
+
+
 
         </LinearLayout>
     </LinearLayout>

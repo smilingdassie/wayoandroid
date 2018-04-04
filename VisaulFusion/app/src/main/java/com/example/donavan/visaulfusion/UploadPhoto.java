@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -32,8 +34,11 @@ import com.kosalgeek.android.photoutil.ImageLoader;
 
 import org.json.JSONException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -57,6 +62,7 @@ public class UploadPhoto extends AppCompatActivity {
     public int mAcceptedByStore;
     public String mJobCardDocumentType;
 
+    public Uri cameraPhotoFile;
     Button ivCamera, ivGallery, ivUpload;
     ImageView ivImage;
 
@@ -179,16 +185,19 @@ public class UploadPhoto extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                try {
-
-                    startActivityForResult(cameraPhoto.takePhotoIntent(), CAMERA_REQUEST);
 
 
-                    cameraPhoto.addToGallery();
-                } catch (IOException e) {
-                    Toast.makeText(getApplicationContext(),
-                            "Something Wrong while taking photos", Toast.LENGTH_LONG).show();
-                }
+                    //startActivityForResult(cameraPhoto.takePhotoIntent(), CAMERA_REQUEST);
+                    //cameraPhoto.addToGallery();
+
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                cameraPhotoFile = Uri.fromFile(getOutputMediaFile());
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraPhotoFile);
+
+                    startActivityForResult(intent, 100);
+
+
+
             }
         });
 
@@ -254,6 +263,20 @@ public class UploadPhoto extends AppCompatActivity {
         });
     }
 
+    private static File getOutputMediaFile(){
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "CameraDemo");
+
+        if (!mediaStorageDir.exists()){
+            if (!mediaStorageDir.mkdirs()){
+                return null;
+            }
+        }
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        return new File(mediaStorageDir.getPath() + File.separator +
+                "IMG_"+ timeStamp + ".jpg");
+    }
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
@@ -320,17 +343,26 @@ public class UploadPhoto extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK){
-            if(requestCode == CAMERA_REQUEST){
-                String photoPath = cameraPhoto.getPhotoPath();
-                selectedPhoto = photoPath;
+            if(requestCode == 100){
                 try {
-                    Bitmap bitmap = ImageLoader.init().from(photoPath).requestSize(512, 512).getBitmap();
-                    ivImage.setImageBitmap(bitmap);
-                } catch (FileNotFoundException e) {
-                    Toast.makeText(getApplicationContext(),
-                            "Something Wrong while loading photos", Toast.LENGTH_LONG).show();
-                }
+                    //String photoPath = cameraPhotoFile;//cameraPhoto.getPhotoPath();
 
+                    galleryPhoto.setPhotoUri(cameraPhotoFile);
+                    String photoPath = galleryPhoto.getPath();
+                    selectedPhoto = photoPath;
+                    try {
+                        Bitmap bitmap = ImageLoader.init().from(photoPath).requestSize(512, 512).getBitmap();
+                        ivImage.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        Toast.makeText(getApplicationContext(),
+                                "Something  went wrong while loading photos", Toast.LENGTH_LONG).show();
+                    }
+                }
+                catch (Exception e){
+                    Toast.makeText(getApplicationContext(),
+                           "Something went wrong while taking photo. Please try again.", Toast.LENGTH_LONG).show();
+
+                }
             }
             else if(requestCode == GALLERY_REQUEST){
                 Uri uri = data.getData();
@@ -344,7 +376,7 @@ public class UploadPhoto extends AppCompatActivity {
                     ivImage.setImageBitmap(bitmap);
                 } catch (FileNotFoundException e) {
                     Toast.makeText(getApplicationContext(),
-                            "Something Wrong while choosing photos", Toast.LENGTH_LONG).show();
+                            "Something went wrong while choosing photos. Please try again.", Toast.LENGTH_LONG).show();
                 }
             }
         }

@@ -355,8 +355,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            // TODO: check this.exception
-            // TODO: do something with the feed
+
             boolean OnlineYes = false;
 
             try {
@@ -410,15 +409,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            // TODO: check this.exception
-            // TODO: do something with the feed
+
             try {
-
-
-                //   Intent intent = new Intent(LoginActivity.this, HomeMenu.class );
-
-                //   startActivity(intent); finish();
-                //
 
 
             } catch (Exception ex) {

@@ -61,7 +61,7 @@ public class InstallUnitaryList extends AppCompatActivity {
             btnInteriorImage.setVisibility(View.VISIBLE);
 
             TextView txtBarcodeHeader = (TextView)  findViewById(R.id.txtBarcodeHeader);
-            txtBarcodeHeader.setText("Accepted");
+            txtBarcodeHeader.setText("Accep ted");
 
            // TextView txtBudgetQtyHeader = (TextView)  findViewById(R.id.txtBudgetQtyHeader);
            // txtBudgetQtyHeader.setText("Max Qty");
@@ -168,7 +168,8 @@ public class InstallUnitaryList extends AppCompatActivity {
                 intent.putExtra("RequestID", RequestID);
                 intent.putExtra("ID", RequestID);
 
-                intent.putExtra("Quantity", storeunit.getMaxQuantityFromMatrix());
+                intent.putExtra("MaxQuantity", storeunit.getMaxQuantityFromMatrix());
+                intent.putExtra("QuantitySelected", storeunit.getQuantitySelected());
 
                 startActivity(intent); finish();
 

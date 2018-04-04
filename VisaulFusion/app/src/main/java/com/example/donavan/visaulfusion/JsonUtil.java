@@ -315,6 +315,7 @@ public class JsonUtil {
                 androidstoreunit.setImagePath(mJsonObjectProperty.getString("ImagePath"));
                 androidstoreunit.setItemTypeName(mJsonObjectProperty.getString("ItemTypeName"));
                 androidstoreunit.setMaxQuantityFromMatrix(parseInt(mJsonObjectProperty.getString("MaxQuantityFromMatrix")));
+                androidstoreunit.setQuantitySelected(parseInt(mJsonObjectProperty.getString("QuantitySelected")));
 
 
                 storeUnitExplicits.add(androidstoreunit);
@@ -405,6 +406,7 @@ public class JsonUtil {
                 androidstoreunit.setImagePath(mJsonObjectProperty.getString("ImagePath"));
                 androidstoreunit.setItemTypeName(mJsonObjectProperty.getString("ItemTypeName"));
                 androidstoreunit.setMaxQuantityFromMatrix(parseInt(mJsonObjectProperty.getString("MaxQuantityFromMatrix")));
+                androidstoreunit.setQuantitySelected(parseInt(mJsonObjectProperty.getString("QuantitySelected")));
 
                 if(androidstoreunit.getStoreNameURN().equals(storeNameURN)) {
                     storeUnitExplicits.add(androidstoreunit);

@@ -32,14 +32,14 @@ public class HomeMenu extends AppCompatActivity {
 
         if(counter > 0)//more than one role so show menu
         {
-            if (!roles.contains("Rep")) {
+            //if (!roles.contains("Rep")) {
                 Button btnRep = (Button) findViewById(R.id.btnRep);
                 btnRep.setVisibility(View.GONE);
-            }
-            if (!roles.contains("Tss")) {
+            //}
+            //if (!roles.contains("Tss")) {
                 Button btnTss = (Button) findViewById(R.id.btnTss);
                 btnTss.setVisibility(View.GONE);
-            }
+            //}
             if (!roles.contains("Whs")) {
                 Button btnWhs = (Button) findViewById(R.id.btnWhs);
                 btnWhs.setVisibility(View.GONE);

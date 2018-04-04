@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">VisaulFusion</string>
+    <string name="app_name">VisualFusion</string>
     <string name="Home">Home</string>
-    <string name="Logout">logout</string>
+    <string name="Logout">Logout</string>
 
 
     <string name="title_activity_signature">Signature</string>
