@@ -299,6 +299,10 @@ public class JsonUtil {
                 AndroidStoreUnitExplicit androidstoreunit = new AndroidStoreUnitExplicit();
 
                 androidstoreunit.setIsSurvey(parseBoolean(mJsonObjectProperty.getString("IsSurvey")));
+                androidstoreunit.setChkInstalled(parseBoolean(mJsonObjectProperty.getString("ChkInstalled")));
+                androidstoreunit.setChkDelivered(parseBoolean(mJsonObjectProperty.getString("ChkDelivered")));
+
+
                 androidstoreunit.setAcceptedByStore(parseInt(mJsonObjectProperty.getString("AcceptedByStore")));
                 androidstoreunit.setWhyNo(mJsonObjectProperty.getString("WhyNo"));
 
@@ -329,6 +333,44 @@ public class JsonUtil {
         return storeUnitExplicits;
     }
 
+    public static ArrayList<AndroidPerformanceReview> parseJsonArrayAndroidPerformanceReview(String jsonStr) throws JSONException {
+        ArrayList<AndroidPerformanceReview> androidperformancereviews = new ArrayList<AndroidPerformanceReview>();
+
+        try {
+            int y=0;
+            JSONArray mJsonArrayProperty = new JSONArray(jsonStr);
+            for (int i = 0; i < mJsonArrayProperty.length(); i++) {
+                JSONObject mJsonObjectProperty = mJsonArrayProperty.getJSONObject(i);
+
+                AndroidPerformanceReview androidperformancereview = new AndroidPerformanceReview();
+
+                androidperformancereview.setID(parseInt(mJsonObjectProperty.getString("ID")));
+                androidperformancereview.setRequestID(parseInt(mJsonObjectProperty.getString("RequestID")));
+                androidperformancereview.setInstallationUserName(mJsonObjectProperty.getString("InstallationUserName"));
+                androidperformancereview.setScore1(parseInt(mJsonObjectProperty.getString("Score1")));
+                androidperformancereview.setScore2(parseInt(mJsonObjectProperty.getString("Score2")));
+                androidperformancereview.setScore3(parseInt(mJsonObjectProperty.getString("Score3")));
+                androidperformancereview.setScore4(parseInt(mJsonObjectProperty.getString("Score4")));
+                androidperformancereview.setScore5(parseInt(mJsonObjectProperty.getString("Score5")));
+                androidperformancereview.setScore6(parseInt(mJsonObjectProperty.getString("Score6")));
+                androidperformancereview.setScore7(parseInt(mJsonObjectProperty.getString("Score7")));
+                androidperformancereview.setSignatureDocumentID(parseInt(mJsonObjectProperty.getString("SignatureDocumentID")));
+                androidperformancereview.setSignatureDesignation(mJsonObjectProperty.getString("SignatureDesignation"));
+                androidperformancereview.setSignaturePersonName(mJsonObjectProperty.getString("SignaturePersonName"));
+
+
+                androidperformancereviews.add(androidperformancereview);
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return androidperformancereviews;
+    }
+
+
     public static ArrayList<AndroidSurvey> parseJsonArrayAndroidSurvey(String jsonStr) throws JSONException {
         ArrayList<AndroidSurvey> androidstoreunits = new ArrayList<AndroidSurvey>();
 
@@ -343,7 +385,7 @@ public class JsonUtil {
                 androidsurvey.setID(parseInt(mJsonObjectProperty.getString("ID")));
                 androidsurvey.setRequestID(parseInt(mJsonObjectProperty.getString("RequestID")));
                 androidsurvey.setSurveyorUserName(mJsonObjectProperty.getString("SurveyorUserName"));
-               // androidsurvey.setSurveyDate(mJsonObjectProperty.getString("SurveyDate"));
+                // androidsurvey.setSurveyDate(mJsonObjectProperty.getString("SurveyDate"));
                 androidsurvey.setTalkingToPerson(mJsonObjectProperty.getString("TalkingToPerson"));
                 androidsurvey.setTalkingToRole(mJsonObjectProperty.getString("TalkingToRole"));
                 androidsurvey.setIsCommittedToInstallation(parseBoolean(mJsonObjectProperty.getString("IsCommittedToInstallation")));
@@ -367,6 +409,8 @@ public class JsonUtil {
         return androidstoreunits;
     }
 
+
+
     public static ArrayList<AndroidStoreUnitExplicit> parseJsonArrayAndroidStoreUnitExplicit(String jsonStr, String storeNameURN) throws JSONException {
         ArrayList<AndroidStoreUnitExplicit> storeUnitExplicits = new ArrayList<AndroidStoreUnitExplicit>();
 
@@ -379,6 +423,10 @@ public class JsonUtil {
                 AndroidStoreUnitExplicit androidstoreunit = new AndroidStoreUnitExplicit();
 
                 androidstoreunit.setIsSurvey(parseBoolean(mJsonObjectProperty.getString("IsSurvey")));
+                androidstoreunit.setChkDelivered(parseBoolean(mJsonObjectProperty.getString("ChkDelivered")));
+                androidstoreunit.setChkInstalled(parseBoolean(mJsonObjectProperty.getString("ChkInstalled")));
+
+
                 androidstoreunit.setAcceptedByStore(parseInt(mJsonObjectProperty.getString("AcceptedByStore")));
 
                 if(mJsonObjectProperty.getString("WhyNo").equals("null")) {
@@ -506,6 +554,35 @@ public class JsonUtil {
 
     }
 
+    public static String toJSonAndroidPerformanceReview(AndroidPerformanceReview androidperformancereview) {
+        try {
+            // Here we convert Java Object to JSON
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("ID", androidperformancereview.getID());
+            jsonObj.put("RequestID", androidperformancereview.getRequestID());
+            jsonObj.put("InstallationUserName", androidperformancereview.getInstallationUserName());
+            jsonObj.put("Score1", androidperformancereview.getScore1());
+            jsonObj.put("Score2", androidperformancereview.getScore2());
+            jsonObj.put("Score3", androidperformancereview.getScore3());
+            jsonObj.put("Score4", androidperformancereview.getScore4());
+            jsonObj.put("Score5", androidperformancereview.getScore5());
+            jsonObj.put("Score6", androidperformancereview.getScore6());
+            jsonObj.put("Score7", androidperformancereview.getScore7());
+            jsonObj.put("SignatureDocumentID", androidperformancereview.getSignatureDocumentID());
+            jsonObj.put("SignatureDesignation", androidperformancereview.getSignatureDesignation());
+            jsonObj.put("SignaturePersonName", androidperformancereview.getSignaturePersonName());
+            jsonObj.put("SignatureDocumentID", androidperformancereview.getSignatureDocumentID());
+            return jsonObj.toString();
+
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+
     public static String toJSonAndroidSurvey(AndroidSurvey androidsurvey) {
         try {
             // Here we convert Java Object to JSON
@@ -534,6 +611,7 @@ public class JsonUtil {
         return null;
 
     }
+
 
     public static String toJSonAndroidOpenRequest(AndroidOpenRequest androidopenrequest) {
         try {
@@ -712,7 +790,13 @@ public class JsonUtil {
         return json;
 
     }
+    public static String convertPerformanceReviewArrayToJson(ArrayList<AndroidPerformanceReview> mylist)
+    {
+        String json = new Gson().toJson(mylist);
 
+        return json;
+
+    }
 
     public static String appendJsonAndroidOpenRequestToArray(ArrayList<AndroidOpenRequest> mylist, AndroidOpenRequest item)
     {

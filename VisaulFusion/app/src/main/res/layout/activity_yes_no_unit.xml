@@ -21,7 +21,7 @@
 
 
         <TextView
-        android:text="Will the outlet accept this unit?"
+        android:text="Can the unit be installed as intended?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

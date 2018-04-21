@@ -23,6 +23,8 @@ import org.json.JSONException;
 import org.w3c.dom.DocumentType;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import static java.lang.Integer.parseInt;
 
@@ -37,15 +39,14 @@ public class InstallUnitaryList extends AppCompatActivity {
     @Override
     public void onBackPressed() {     }
 
+
+
     @Override  protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
        // setContentView(R.layout.install_unitary_list_layout); // Daniel
         //Don
         setContentView(R.layout.new_upload_layout);
-
-
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         String primaryRole = Local.Get( getApplicationContext(), "PrimaryRole");
         if (primaryRole.equals("Srv")){
@@ -119,11 +120,20 @@ public class InstallUnitaryList extends AppCompatActivity {
 
         myunits = getstoreUnitsExplicit(me.getStringExtra("StoreNameURN"));
 
+        boolean asc = true;
+
+        //Sort in ascending order of name
+        Collections.sort(myunits, new CustomComparator());
+
+
         gridView=(GridView)findViewById(R.id.gridViewCustom);
         // Create the Custom Adapter Object
         gridViewCustomAdapter = new InstallGridViewUnitary(this, myunits, mIsSurvey);
         // Set the Adapter to GridView
         gridView.setAdapter(gridViewCustomAdapter);
+
+
+
 
         //sets where list item is clicking too
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -446,9 +456,12 @@ public class InstallUnitaryList extends AppCompatActivity {
             // TODO: check this.exception
             // TODO: do something with the feed
             try {
+                Intent intent = new Intent(InstallUnitaryList.this, InstallSetAppointment.class);
 
-
-                Intent intent = new Intent(InstallUnitaryList.this, InstallSetAppointment.class );
+                //Surprise: Now We Do the Performance Check instead if its an installation
+                if(!mIsSurvey) {
+                    intent = new Intent(InstallUnitaryList.this, NewFavorites1.class);
+                }
 
                 //Sending data to another Activity
                 String storesString = Local.Get(getApplicationContext(), "AndroidInsAppointments");
@@ -458,6 +471,7 @@ public class InstallUnitaryList extends AppCompatActivity {
                 //Convert request to appointment
                 AndroidAppointment appointment = findAppointmentByID(ID, appointments);
                 intent.putExtra("ID", appointment.getID());
+                intent.putExtra("RequestID", appointment.getID());
                 intent.putExtra("Mileage", appointment.getMileage());
                 intent.putExtra("StoreID", appointment.getStoreID());
 

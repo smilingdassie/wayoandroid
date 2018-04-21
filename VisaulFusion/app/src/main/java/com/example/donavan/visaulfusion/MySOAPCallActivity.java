@@ -39,6 +39,8 @@ public class MySOAPCallActivity
     public final String SOAP_ACTIONInstallStatusList = "http://tempuri.org/InstallStatusList";
 
     public final String SOAP_ACTIONSaveSurvey = "http://tempuri.org/SaveSurvey";
+    public final String SOAP_ACTIONSavePerformanceReview = "http://tempuri.org/SavePerformanceReview";
+
     public final String SOAP_ACTIONIsSurveyComplete = "http://tempuri.org/IsSurveyComplete";
     public final String SOAP_ACTIONGetSurvey = "http://tempuri.org/GetSurvey";
     public final String SOAP_ACTIONSaveAndroidUnitExplicits = "http://tempuri.org/SaveAndroidUnitExplicits";
@@ -71,6 +73,10 @@ public class MySOAPCallActivity
 
     public  final String InstallStatusList = "InstallStatusList";
     public  final String SaveSurvey = "SaveSurvey";
+    public  final String SavePerformanceReview = "SavePerformanceReview";
+
+
+
     public  final String IsSurveyComplete = "IsSurveyComplete";
     public  final String GetSurvey = "GetSurvey";
     public  final String SaveAndroidUnitExplicits = "SaveAndroidUnitExplicits";
@@ -619,6 +625,7 @@ public class MySOAPCallActivity
 
 
 
+
     public String SaveSurvey( String JsonSurveys)
     {
         SoapObject request = new SoapObject(WSDL_TARGET_NAMESPACE,SaveSurvey);
@@ -640,6 +647,36 @@ public class MySOAPCallActivity
         try
         {
             httpTransport.call(SOAP_ACTIONSaveSurvey, envelope);
+            response = envelope.getResponse();
+        }
+        catch (Exception exception)
+        {
+            response=exception.toString();
+        }
+        return response.toString();
+    }
+
+    public String SavePerformanceReview( String JsonSurveys)
+    {
+        SoapObject request = new SoapObject(WSDL_TARGET_NAMESPACE,SavePerformanceReview);
+        PropertyInfo pi=new PropertyInfo();
+        pi.setName("JsonSurveys");
+        pi.setValue(JsonSurveys);
+        pi.setType(String.class);
+        request.addProperty(pi);
+
+
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                SoapEnvelope.VER11);
+        envelope.dotNet = true;
+
+        envelope.setOutputSoapObject(request);
+
+        HttpTransportSE httpTransport = new HttpTransportSE(SOAP_ADDRESS, 14000);
+        Object response=null;
+        try
+        {
+            httpTransport.call(SOAP_ACTIONSavePerformanceReview, envelope);
             response = envelope.getResponse();
         }
         catch (Exception exception)

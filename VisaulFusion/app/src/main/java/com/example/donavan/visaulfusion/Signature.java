@@ -39,6 +39,7 @@ public class Signature extends AppCompatActivity {
     private int mSurveyID;
     private int mRequestID;
     private String mURN;
+    private String mSignaturePurpose;
     String selectedPhoto;
 
     @Override
@@ -49,9 +50,22 @@ public class Signature extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signature);//see xml layout
         signatureView = (SignatureView) findViewById(R.id.signature_view);
-        mSurveyID = getIntent().getIntExtra("SurveyID",0);
-        mRequestID = getIntent().getIntExtra("RequestID",0);
-        mURN = getIntent().getStringExtra("URN");
+
+
+        mSignaturePurpose = Local.Get(getApplicationContext(), "SignaturePurpose");
+
+        if(mSignaturePurpose.equals("PerformanceReview"))
+        {
+                mURN = "PerformanceReview";
+        }
+        else {
+
+            mSurveyID = getIntent().getIntExtra("SurveyID", 0);
+            mRequestID = getIntent().getIntExtra("RequestID", 0);
+            mURN = getIntent().getStringExtra("URN");
+
+        }
+
 
         File directory = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
@@ -76,7 +90,7 @@ public class Signature extends AppCompatActivity {
                 }
                 if(TextUtils.equals(encodedImage, "Skip"))
                 {
-                    WhenUploadIsComplete();
+                    WhenUploadIsComplete("");
 
                 }
                 else {
@@ -84,12 +98,24 @@ public class Signature extends AppCompatActivity {
                     try {
 
 
-                        Integer StoreID = getIntent().getIntExtra("StoreID", 0);
-                        Integer StoreItemID = mSurveyID;
+                        Integer StoreID = 0;
+                        Integer StoreItemID = 0;
                         String UserName = Local.Get(getApplicationContext(), "UserName");
-                        String ImageType = "SurveySignature";
+                        String ImageType = "";
                         String Barcode = "";
                         String ProductComplaint = "";
+
+                        if(mSignaturePurpose.equals("PerformanceReview")) {
+                            ImageType = "PerformanceScoreCardSignature";
+                            StoreID = Integer.parseInt(Local.Get(getApplicationContext(), "StoreID"));
+                            StoreItemID = Integer.parseInt(Local.Get(getApplicationContext(), "RequestID"));;
+                        }
+                        else {
+                            StoreID = getIntent().getIntExtra("StoreID", 0);
+                            StoreItemID = mSurveyID;
+                            ImageType = "SurveySignature";
+                        }
+
 
                                                  //on ws if barcode is blank and its a store item image then its not a barcode image
                         UploadStoreItemImage(StoreItemID, StoreID, encodedImage, UserName, ImageType, ProductComplaint, Barcode);
@@ -276,7 +302,13 @@ public class Signature extends AppCompatActivity {
                 }
                 else {
                     result = result.replace("\n", "").replace("\r", "");
-                    WhenUploadIsComplete();
+                    if(mSignaturePurpose.equals("PerformanceReview"))
+                    {
+                        WhenUploadIsComplete("PerformanceReview");//TODO:
+                    }
+                    else {
+                        WhenUploadIsComplete("SurveySignature");
+                    }
                 }
 
             } catch (Exception ex) {
@@ -319,13 +351,17 @@ public class Signature extends AppCompatActivity {
     }
 
 
-    public void WhenUploadIsComplete ()throws JSONException {
+    public void WhenUploadIsComplete (String ImageType)throws JSONException {
         Intent me = getIntent();
 
 
-        String ImageType = "SurveySignature";
-        Integer ID = mRequestID;
 
+                Integer ID = mRequestID;
+                if(ID == 0)
+                {
+                    ID = Integer.parseInt(Local.Get(getApplicationContext(), "RequestID"));
+
+                }
 
                 Intent intent = new Intent(Signature.this, InstallSetAppointment.class);
 
@@ -343,11 +379,11 @@ public class Signature extends AppCompatActivity {
                 intent.putExtra("ID", appointment.getID());
                 intent.putExtra("StoreID", appointment.getStoreID());
                 intent.putExtra("RequestTypeName", appointment.getRequestTypeName());
-        intent.putExtra("BrandName", appointment.getBrandName());
-        intent.putExtra("OutletTypeName", appointment.getOutletTypeName());
-        intent.putExtra("TierTypeName", appointment.getTierTypeName());
+                intent.putExtra("BrandName", appointment.getBrandName());
+                intent.putExtra("OutletTypeName", appointment.getOutletTypeName());
+                intent.putExtra("TierTypeName", appointment.getTierTypeName());
 
-        intent.putExtra("StoreName", appointment.getStoreName());
+                intent.putExtra("StoreName", appointment.getStoreName());
                 intent.putExtra("StoreNameURN", appointment.getStoreNameURN());
                 intent.putExtra("URN", appointment.getURN());
                 intent.putExtra("CurrentPhase", appointment.getCurrentPhase());
@@ -370,14 +406,22 @@ public class Signature extends AppCompatActivity {
                 intent.putExtra("Address", appointment.getAddress());
                 intent.putExtra("Region", appointment.getRegion());
 
-        intent.putExtra("BrandName", appointment.getBrandName());
-        intent.putExtra("OutletTypeName", appointment.getOutletTypeName());
-        intent.putExtra("TierTypeName", appointment.getTierTypeName());
+                intent.putExtra("BrandName", appointment.getBrandName());
+                intent.putExtra("OutletTypeName", appointment.getOutletTypeName());
+                intent.putExtra("TierTypeName", appointment.getTierTypeName());
 
 
         startActivity(intent); finish();
             }
 
+
+    public void WhenUploadOfPerformanceReviewSignatureIsComplete()
+    {
+
+
+
+
+    }
 
     public AndroidAppointment findAppointmentByID(int id, ArrayList<AndroidAppointment> requests){
         for (AndroidAppointment request : requests) {

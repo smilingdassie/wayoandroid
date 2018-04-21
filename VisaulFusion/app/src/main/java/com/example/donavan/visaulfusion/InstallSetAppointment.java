@@ -64,35 +64,6 @@ public class InstallSetAppointment extends AppCompatActivity  implements GoogleA
     static final int TIME_DIALOG_ID = 999;
     static final int DATE_DIALOG_ID = 0;
 
-
-
-
-    protected String parseTimeForDisplay(String dateTimeWithT)
-    {
-
-        dateTimeWithT = dateTimeWithT.replace('T',' ');
-
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        SimpleDateFormat simpleTimeFormat = new SimpleDateFormat("HH:mm");
-
-        try {
-            calendar.setTime(simpleDateFormat.parse(dateTimeWithT));
-
-            String dateToShow = simpleTimeFormat.format(calendar.getTime());
-            return dateToShow;
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return dateTimeWithT;
-        }
-
-
-    }
-    @Override
-    public void onBackPressed() {     }
-
     @Override  protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.install_set_appointment_layout);
@@ -111,7 +82,7 @@ public class InstallSetAppointment extends AppCompatActivity  implements GoogleA
         if(mIsSurvey){
             Button btnSurvey =  (Button) findViewById(R.id.btnSurvey);
             btnSurvey.setVisibility(View.VISIBLE);
-           // getActionBar().setTitle("Survey Appointment");
+            // getActionBar().setTitle("Survey Appointment");
             getSupportActionBar().setTitle("Survey Appointment");  //
         }
 
@@ -204,9 +175,9 @@ public class InstallSetAppointment extends AppCompatActivity  implements GoogleA
         txtAddress.setText(me.getStringExtra("Address"));
 
 
-      //  EditText editMileage = (EditText)findViewById(R.id.editMileage);
-       // Integer mileage = me.getIntExtra("Mileage",0);
-       // editMileage.setText(mileage.toString());
+        //  EditText editMileage = (EditText)findViewById(R.id.editMileage);
+        // Integer mileage = me.getIntExtra("Mileage",0);
+        // editMileage.setText(mileage.toString());
 
         String appointmentDateTime = me.getStringExtra("AppointmentDateTime");
         appointmentDateTime = appointmentDateTime.replace('T',' ');
@@ -232,6 +203,35 @@ public class InstallSetAppointment extends AppCompatActivity  implements GoogleA
 
 
     }
+
+
+
+
+    protected String parseTimeForDisplay(String dateTimeWithT)
+    {
+
+        dateTimeWithT = dateTimeWithT.replace('T',' ');
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        SimpleDateFormat simpleTimeFormat = new SimpleDateFormat("HH:mm");
+
+        try {
+            calendar.setTime(simpleDateFormat.parse(dateTimeWithT));
+
+            String dateToShow = simpleTimeFormat.format(calendar.getTime());
+            return dateToShow;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return dateTimeWithT;
+        }
+
+
+    }
+    @Override
+    public void onBackPressed() {     }
 
 
     //GPS Stuff

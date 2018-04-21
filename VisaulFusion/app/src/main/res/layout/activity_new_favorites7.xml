@@ -25,22 +25,21 @@
                 android:id="@+id/heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Skills Evaluation"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="20dp"/>
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="General Quality?"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Is the supplier able to demonstrate the skills required based appon RFI"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="40dp"
-                android:textSize="20dp"/>
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout

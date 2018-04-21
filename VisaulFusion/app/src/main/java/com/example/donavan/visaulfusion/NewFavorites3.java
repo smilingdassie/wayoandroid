@@ -16,7 +16,7 @@ public class NewFavorites3 extends AppCompatActivity {
     Button Fav5btn;
     Button Continue;
 
-
+    int mPRS;
 
 
     @Override
@@ -47,7 +47,7 @@ public class NewFavorites3 extends AppCompatActivity {
 
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Very Poor");
+         tv.setText("Very Poor"); mPRS = 1;
 
 
     }
@@ -68,7 +68,7 @@ public class NewFavorites3 extends AppCompatActivity {
         Continue.setEnabled(true);
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Poor");
+         tv.setText("Poor"); mPRS = 2;
 
 
     }
@@ -89,7 +89,7 @@ public class NewFavorites3 extends AppCompatActivity {
         Continue.setEnabled(true);
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Average");
+         tv.setText("Average"); mPRS = 3;
 
     }
 
@@ -109,7 +109,7 @@ public class NewFavorites3 extends AppCompatActivity {
         Continue.setEnabled(true);
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Good");
+        tv.setText("Good"); mPRS = 4;
 
 
 
@@ -132,7 +132,7 @@ public class NewFavorites3 extends AppCompatActivity {
 
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Expetional");
+        tv.setText("Exceptional"); mPRS = 5;
 
 
 
@@ -142,7 +142,7 @@ public class NewFavorites3 extends AppCompatActivity {
 
     public void Continue(View view) {
         Intent intent = new Intent(NewFavorites3.this, NewFavorites4.class );
-
+        Local.Set(getApplicationContext(), "PRS3", Integer.toString(mPRS));
         startActivity(intent);
     }
 }

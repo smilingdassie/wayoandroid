@@ -1,11 +1,16 @@
 package com.example.donavan.visaulfusion;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.json.JSONException;
 
 public class NewFavorites7 extends AppCompatActivity {
 
@@ -15,7 +20,7 @@ public class NewFavorites7 extends AppCompatActivity {
     Button Fav4btn;
     Button Fav5btn;
     Button Continue;
-
+    int mPRS;
 
 
 
@@ -47,8 +52,8 @@ public class NewFavorites7 extends AppCompatActivity {
 
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Very Poor");
-
+         tv.setText("Very Poor"); mPRS = 1;
+        mPRS = 1;
 
     }
 
@@ -68,9 +73,9 @@ public class NewFavorites7 extends AppCompatActivity {
         Continue.setEnabled(true);
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Poor");
+         tv.setText("Poor"); mPRS = 2;
 
-
+        mPRS = 2;
     }
 
     public void Favorites3(View view) {
@@ -89,8 +94,8 @@ public class NewFavorites7 extends AppCompatActivity {
         Continue.setEnabled(true);
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Average");
-
+         tv.setText("Average"); mPRS = 3;
+        mPRS = 3;
     }
 
     public void Favorites4(View view) {
@@ -109,9 +114,9 @@ public class NewFavorites7 extends AppCompatActivity {
         Continue.setEnabled(true);
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Good");
+        tv.setText("Good"); mPRS = 4;
 
-
+        mPRS = 4;
 
     }
 
@@ -132,18 +137,39 @@ public class NewFavorites7 extends AppCompatActivity {
 
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Expetional");
+        tv.setText("Exceptional"); mPRS = 5;
 
 
-
+        mPRS = 5;
 
     }
+
 
 
     public void Continue(View view) {
 
-        Intent intent = new Intent(NewFavorites7.this, Thankyou.class );
 
-        startActivity(intent);
+        Intent intent = new Intent(NewFavorites7.this, PreSignPerformanceReview.class );
+       //Put these in Global
+       /* intent.putExtra("SurveyID", mSurveyID);
+        intent.putExtra("StoreID", mStoreID);
+        intent.putExtra("RequestID", mRequestID);
+        intent.putExtra("URN", mURN);
+      */
+
+       Local.Set(getApplicationContext(), "PRS7", Integer.toString(mPRS));
+
+
+
+
+        startActivity(intent); finish();
+
+
+
     }
+
+
+
+
+
 }

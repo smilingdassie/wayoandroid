@@ -1,5 +1,6 @@
 package com.example.donavan.visaulfusion;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -32,8 +33,8 @@ public class Thankyou extends AppCompatActivity {
 
     public void Continue(View view) {
 
-      //  Intent intent = new Intent(NewFavorites7.this, Thankyou.class );
+        Intent intent = new Intent(Thankyou.this, InstallHome.class );
 
-       // startActivity(intent);
+        startActivity(intent);
     }
 }

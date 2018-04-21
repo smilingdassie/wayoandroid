@@ -336,6 +336,10 @@ public class YesNoUnit extends AppCompatActivity {
             storeUnitExplicit.setImagePath( unitExplicit.getImagePath());
             storeUnitExplicit.setStoreItemID( unitExplicit.getStoreItemID());
             storeUnitExplicit.setIsSurvey(unitExplicit.getIsSurvey());
+
+            storeUnitExplicit.setChkInstalled(unitExplicit.getChkInstalled());
+            storeUnitExplicit.setChkDelivered(unitExplicit.getChkDelivered());
+
             storeUnitExplicit.setBarcode(unitExplicit.getBarcode());
             storeUnitExplicit.setEnumerate(unitExplicit.getEnumerate());
             storeUnitExplicit.setImageCount(unitExplicit.getImageCount());

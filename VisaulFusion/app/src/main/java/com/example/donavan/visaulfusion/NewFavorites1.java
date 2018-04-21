@@ -15,7 +15,7 @@ public class NewFavorites1 extends AppCompatActivity {
     Button Fav4btn;
     Button Fav5btn;
     Button Continue;
-
+    int mPRS;
 
 
 
@@ -24,8 +24,10 @@ public class NewFavorites1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_favorites1);
 
-
-
+        Intent me = getIntent();
+        Local.Set(getApplicationContext(), "RequestID", String.format("%s",(me.getIntExtra("RequestID", 0))));
+        Local.Set(getApplicationContext(), "StoreID", String.format("%s",(me.getIntExtra("StoreID", 0))));
+        Local.Set(getApplicationContext(), "URN", me.getStringExtra("URN"));
 
     }
 
@@ -47,7 +49,7 @@ public class NewFavorites1 extends AppCompatActivity {
 
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Very Poor");
+         tv.setText("Very Poor"); mPRS = 1;
 
 
     }
@@ -68,7 +70,7 @@ public class NewFavorites1 extends AppCompatActivity {
         Continue.setEnabled(true);
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Poor");
+         tv.setText("Poor"); mPRS = 2;
 
 
     }
@@ -89,7 +91,7 @@ public class NewFavorites1 extends AppCompatActivity {
         Continue.setEnabled(true);
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Average");
+         tv.setText("Average"); mPRS = 3;
 
     }
 
@@ -109,7 +111,7 @@ public class NewFavorites1 extends AppCompatActivity {
         Continue.setEnabled(true);
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Good");
+        tv.setText("Good"); mPRS = 4;
 
 
 
@@ -132,7 +134,7 @@ public class NewFavorites1 extends AppCompatActivity {
 
 
         TextView tv = (TextView)findViewById(R.id.answer);
-        tv.setText("Expetional");
+        tv.setText("Exceptional"); mPRS = 5;
 
 
 
@@ -143,7 +145,7 @@ public class NewFavorites1 extends AppCompatActivity {
     public void Continue(View view) {
 
         Intent intent = new Intent(NewFavorites1.this, NewFavorites2.class );
-
+        Local.Set(getApplicationContext(), "PRS1", Integer.toString(mPRS));
         startActivity(intent);
     }
 }

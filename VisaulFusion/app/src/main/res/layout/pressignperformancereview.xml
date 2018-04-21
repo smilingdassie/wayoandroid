@@ -25,25 +25,51 @@
                 android:id="@+id/heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Complete"
+                android:text="Please Enter Reviewer Name"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:textSize="20dp"/>
 
-            <TextView
-                android:id="@+id/question"
+            <EditText
+                android:id="@+id/editPersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thank you for taking the time to complete the questionnaire to rate the installation team's performance. Have a great day!"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="40dp"
-                android:textSize="20dp"/>
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Firstname Surname" />
+
+
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/heading2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title / Designation"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/editPersonDesignation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+
+                android:inputType="textPersonName"
+                android:hint="Store Owner" />
+
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/continue_btn"

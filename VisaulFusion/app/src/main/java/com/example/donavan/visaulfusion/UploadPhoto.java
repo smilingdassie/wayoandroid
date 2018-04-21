@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -66,6 +67,7 @@ public class UploadPhoto extends AppCompatActivity {
     Button ivCamera, ivGallery, ivUpload;
     ImageView ivImage;
 
+
     CameraPhoto cameraPhoto;
     GalleryPhoto galleryPhoto;
 
@@ -102,8 +104,32 @@ public class UploadPhoto extends AppCompatActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        BitmapDrawable drawable = (BitmapDrawable) ivImage.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        outState.putParcelable("image", bitmap);
+
+
+
+        super.onSaveInstanceState(outState);
+    }
+
+protected boolean IsBitMapEmpty(Bitmap myBitmap){
+
+    Bitmap emptyBitmap = Bitmap.createBitmap(myBitmap.getWidth(), myBitmap.getHeight(), myBitmap.getConfig());
+    if (myBitmap.sameAs(emptyBitmap)) {
+        // myBitmap is empty/blank
+        return true;
+    }
+
+      return false;
+}
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.activity_upload_photo);
 
         mJobCardDocumentType = "JobCardInsPage1";
@@ -177,24 +203,42 @@ public class UploadPhoto extends AppCompatActivity {
         galleryPhoto = new GalleryPhoto(getApplicationContext());
 
         ivImage = (ImageView)findViewById(R.id.ivImage);
+
         ivCamera = (Button)findViewById(R.id.ivCamera);
         ivGallery = (Button)findViewById(R.id.ivGallery);
         ivUpload = (Button)findViewById(R.id.ivUpload);
 
+        //Get your bitmap back from saved instance because someone changed phone orientation
+        if(savedInstanceState != null) {
+            Bitmap bitmap = savedInstanceState.getParcelable("image");
+            if(!IsBitMapEmpty(bitmap)) {
+                ivImage.setImageBitmap(bitmap);
+            }
+
+
+        }
+
+
         ivCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                dispatchTakePictureIntent();
+
 
 
 
                     //startActivityForResult(cameraPhoto.takePhotoIntent(), CAMERA_REQUEST);
                     //cameraPhoto.addToGallery();
 
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+               /*     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 cameraPhotoFile = Uri.fromFile(getOutputMediaFile());
+
+                Local.Set(getApplicationContext(), "cameraPhotoFile", cameraPhotoFile.toString());
+
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraPhotoFile);
 
-                    startActivityForResult(intent, 100);
+                    startActivityForResult(intent, 100);*/
 
 
 
@@ -262,6 +306,16 @@ public class UploadPhoto extends AppCompatActivity {
             }
         });
     }
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
 
     private static File getOutputMediaFile(){
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
@@ -339,32 +393,46 @@ public class UploadPhoto extends AppCompatActivity {
         }
         return false;
     }
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK){
-            if(requestCode == 100){
-                try {
-                    //String photoPath = cameraPhotoFile;//cameraPhoto.getPhotoPath();
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Bitmap imageBitmapSmaller = getResizedBitmap(imageBitmap, 512);
 
-                    galleryPhoto.setPhotoUri(cameraPhotoFile);
-                    String photoPath = galleryPhoto.getPath();
-                    selectedPhoto = photoPath;
-                    try {
-                        Bitmap bitmap = ImageLoader.init().from(photoPath).requestSize(512, 512).getBitmap();
-                        ivImage.setImageBitmap(bitmap);
-                    } catch (FileNotFoundException e) {
-                        Toast.makeText(getApplicationContext(),
-                                "Something  went wrong while loading photos", Toast.LENGTH_LONG).show();
-                    }
-                }
-                catch (Exception e){
-                    Toast.makeText(getApplicationContext(),
-                           "Something went wrong while taking photo. Please try again.", Toast.LENGTH_LONG).show();
+            ImageView ivImage = (ImageView)findViewById(R.id.ivImage);
+            ivImage.setImageBitmap(imageBitmapSmaller);
 
-                }
-            }
-            else if(requestCode == GALLERY_REQUEST){
+            Uri uri = data.getData();
+
+            galleryPhoto.setPhotoUri(uri);
+            String photoPath = galleryPhoto.getPath();
+            selectedPhoto = photoPath;
+
+        }
+
+        if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
+
                 Uri uri = data.getData();
 
                 galleryPhoto.setPhotoUri(uri);
@@ -374,12 +442,12 @@ public class UploadPhoto extends AppCompatActivity {
                 try {
                     Bitmap bitmap = ImageLoader.init().from(photoPath).requestSize(512, 512).getBitmap();
                     ivImage.setImageBitmap(bitmap);
-                } catch (FileNotFoundException e) {
+                } catch (Exception e) {
                     Toast.makeText(getApplicationContext(),
                             "Something went wrong while choosing photos. Please try again.", Toast.LENGTH_LONG).show();
                 }
             }
-        }
+
     }
 
     //Daniel TODO: Go back to unit list
@@ -604,6 +672,10 @@ public class UploadPhoto extends AppCompatActivity {
             androidStoreUnitExplicit.setEnumerate(findStoreUnit.getEnumerate());
             androidStoreUnitExplicit.setWhyNo(findStoreUnit.getWhyNo());
             androidStoreUnitExplicit.setIsSurvey(findStoreUnit.getIsSurvey());
+
+            androidStoreUnitExplicit.setChkDelivered(findStoreUnit.getChkDelivered());
+            androidStoreUnitExplicit.setChkInstalled(findStoreUnit.getChkInstalled());
+
             androidStoreUnitExplicit.setAcceptedByStore(mAcceptedByStore);
 
 

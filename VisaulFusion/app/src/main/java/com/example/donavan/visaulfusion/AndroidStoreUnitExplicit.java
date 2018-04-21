@@ -22,6 +22,8 @@ public class AndroidStoreUnitExplicit {
     public boolean IsSurvey;
     public int AcceptedByStore;
     public String WhyNo;
+    public boolean ChkInstalled;
+    public boolean ChkDelivered;
 
     public String getWhyNo() {
         return WhyNo;
@@ -37,6 +39,21 @@ public class AndroidStoreUnitExplicit {
     public void setIsSurvey(boolean IsSurvey) {
         this.IsSurvey = IsSurvey;
     }
+
+    public boolean getChkDelivered() {
+        return ChkDelivered;
+    }
+    public void setChkDelivered(boolean ChkDelivered) {
+        this.ChkDelivered = ChkDelivered;
+    }
+
+    public boolean getChkInstalled() {
+        return ChkInstalled;
+    }
+    public void setChkInstalled(boolean ChkInstalled) {
+        this.ChkInstalled = ChkInstalled;
+    }
+    
 
     public int getAcceptedByStore() {
         return AcceptedByStore;

@@ -917,6 +917,7 @@ public class SurveyActivity extends AppCompatActivity {
 
                // Local.Set(getApplicationContext(), "AndroidSurveys", "");
                 mSurveyID = parseInt(result);
+                Local.Set(getApplicationContext(), "SignaturePurpose", "Survey");
                 Intent intent = new Intent(SurveyActivity.this, Signature.class );
                 intent.putExtra("SurveyID", mSurveyID);
                 intent.putExtra("StoreID", mStoreID);

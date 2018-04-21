@@ -25,18 +25,18 @@
                 android:id="@+id/heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RFI Request for information"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="20dp"/>
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="1. Assets Installed and Recorded?"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Was the RFI returned withing the time frame?"
+                android:text=""
                 android:gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="40dp"
