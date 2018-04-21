@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.donavan.visaulfusion.R;
@@ -62,6 +64,7 @@ public class InstallGridViewUnitary extends  ArrayAdapter <AndroidStoreUnitExpli
         final int pos = position;
 
 
+
     if (convertView == null) {
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         //row = inflater.inflate(R.layout.install_row_unitary, parent, false);
@@ -72,7 +75,6 @@ public class InstallGridViewUnitary extends  ArrayAdapter <AndroidStoreUnitExpli
         row = (View) convertView;
     }
         try {
-
     TextView ItemTypeName = (TextView) row.findViewById(R.id.txtItemTypeName);
     ImageView ImageBase64 = (ImageView) row.findViewById(R.id.imageView);
     TextView Barcode = (TextView) row.findViewById(R.id.txtBarcode);
@@ -106,6 +108,9 @@ public class InstallGridViewUnitary extends  ArrayAdapter <AndroidStoreUnitExpli
             ImageBase64.setImageResource(getImageFromDrawables(item.getImagePath()));//R.drawable.dis1);//TODO
             txtQuantitySelected.setText(Integer.toString(item.getQuantitySelected()));
             txtMaxQuantity.setText(Integer.toString(item.getMaxQuantityFromMatrix()));
+
+
+
 
 }
         catch(Exception ex)

@@ -24,7 +24,18 @@ public class NewFavorites3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_favorites3);
 
+        Fav1btn = (Button) findViewById(R.id.fav1id);
+        Fav2btn = (Button) findViewById(R.id.fav2id);
+        Fav3btn = (Button) findViewById(R.id.fav3id);
+        Fav4btn = (Button) findViewById(R.id.fav4id);
+        Fav5btn = (Button) findViewById(R.id.fav5id);
 
+
+        Fav1btn.setBackgroundResource(R.drawable.button_notactive_heart);
+        Fav2btn.setBackgroundResource(R.drawable.button_notactive_heart);
+        Fav3btn.setBackgroundResource(R.drawable.button_notactive_heart);
+        Fav4btn.setBackgroundResource(R.drawable.button_notactive_heart);
+        Fav5btn.setBackgroundResource(R.drawable.button_notactive_heart);
 
 
     }
