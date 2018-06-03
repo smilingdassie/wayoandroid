@@ -1,9 +1,11 @@
-package com.vf.admin.vf_rep;
+package com.dsouchon.wayo.visualfusion;
 
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,6 +14,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +40,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class SignatureActivity extends AppCompatActivity {
-
+    private DBManager dbManager;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private SignaturePad mSignaturePad;
@@ -48,6 +51,29 @@ public class SignatureActivity extends AppCompatActivity {
     private String globalStoreNameURN;
     private String yourname="";
     private String designation="";
+    private Integer RequestID;
+
+
+    @Override
+    public void onBackPressed() {
+        //DO NOTHING
+
+    }
+
+
+    /************SET AND GET GLOBAL VARIABLES ******************/
+    public static void setDefaults(Context context, String key, String value) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
+    public static String getDefaultsOld(Context context,String key) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(key, "");
+    }
+    /******************************/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +82,16 @@ public class SignatureActivity extends AppCompatActivity {
         setContentView(R.layout.signature_pad);
 
         Intent me = getIntent();
-        mGlobalSignatureType = String.format("Signature%s", me.getStringExtra("FromScreen"));
+        mGlobalSignatureType = me.getStringExtra("SignatureType");
 
-        mGlobalStoreID = me.getIntExtra("ID",0);
-        globalStoreNameURN = me.getStringExtra("StoreNameURN");
+        mGlobalStoreID = me.getIntExtra("StoreID", 0);
 
+        if(mGlobalSignatureType.equals("SurveySignature")) {
+
+            globalStoreNameURN = me.getStringExtra("StoreNameURN");
+        }
+
+        RequestID  = me.getIntExtra("RequestID",0);
         yourname = me.getStringExtra("YourName");
         designation = me.getStringExtra("Designation");
 
@@ -105,7 +136,7 @@ public class SignatureActivity extends AppCompatActivity {
 
                 if (filePath !="False") {
                     //Toast.makeText(SignatureActivity.this, "JPG Signature saved into the Gallery", Toast.LENGTH_SHORT).show();
-                    String strUserName = Local.Get(getApplicationContext(),"UserName");
+                    String strUserName = dbManager.getValue("UserName");
 
                     Bitmap bitmap = null;//1024,1024).getBitmap();
                     try {
@@ -116,18 +147,18 @@ public class SignatureActivity extends AppCompatActivity {
                     String encodedImage = ImageBase64.encode(bitmap);
 
                     //Please wait
-                    yourname = Local.Get(getApplicationContext(), "YourName");
-                    designation = Local.Get(getApplicationContext(), "Designation");
+                    yourname = dbManager.getValue( "YourName");
+                    designation = dbManager.getValue( "Designation");
 
                     String complaint = String.format("YourName:%s;Designation:%s", yourname, designation);
 
-                    UploadStoreItemImage( 0, mGlobalStoreID, encodedImage , strUserName ,mGlobalSignatureType,complaint,"");
+                    UploadStoreItemImage( RequestID, mGlobalStoreID, encodedImage , strUserName ,mGlobalSignatureType,complaint,"");
 
 
                 }
                 else {
                     Toast.makeText(SignatureActivity.this, "Unable to store the signature", Toast.LENGTH_SHORT).show();
-                    Intent i = new  Intent(getApplicationContext(),SuccessActivity.class);
+                    Intent i = new  Intent(getApplicationContext(),InstallSetAppointment.class);
                     startActivity(i);
                 }
               /*  if (addSvgSignatureToGallery(mSignaturePad.getSignatureSvg())) {
@@ -170,7 +201,7 @@ public class SignatureActivity extends AppCompatActivity {
 
         if (id == R.id.homebutton) {
 
-            Intent intent = new Intent(SignatureActivity.this, Login.class );
+            Intent intent = new Intent(SignatureActivity.this, LoginActivity.class );
 
             startActivity(intent); finish();
 
@@ -180,11 +211,11 @@ public class SignatureActivity extends AppCompatActivity {
 
 
         if (id == R.id.logoutbutton){
-            startActivity(new Intent(this,Login.class));
+            startActivity(new Intent(this,LoginActivity.class));
         }
 
         if (id == R.id.backbutton){
-            startActivity(new Intent(this,Login.class));
+            startActivity(new Intent(this,LoginActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -287,7 +318,7 @@ public class SignatureActivity extends AppCompatActivity {
 
     public void ConfirmSignature(View view) {
 
-        Intent i = new  Intent(getApplicationContext(),SuccessActivity.class);
+        Intent i = new  Intent(getApplicationContext(),InstallSetAppointment.class);
         startActivity(i);
         finish();
 
@@ -312,8 +343,7 @@ public class SignatureActivity extends AppCompatActivity {
 
 
         } catch (Exception ex) {
-            ad.setTitle("Error!");
-            ad.setMessage(ex.toString());
+            Toast.makeText(getApplicationContext(), ex.toString(), Toast.LENGTH_LONG).show();
         }
         ad.show();
 
@@ -345,7 +375,7 @@ public class SignatureActivity extends AppCompatActivity {
                 }
 
             } catch (Exception ex) {
-                String e3 = ex.toString();
+                Toast.makeText(getApplicationContext(), ex.toString(), Toast.LENGTH_LONG).show();
             }
 
         }
@@ -387,144 +417,118 @@ public class SignatureActivity extends AppCompatActivity {
     public void WhenUploadIsComplete ()throws JSONException {
         Intent me = getIntent();
 
-        if(mGlobalSignatureType.equals("SignatureContract")){//Contract is complete so go to Appendix for this store
+        mGlobalSignatureType = me.getStringExtra("SignatureType");
+        switch(mGlobalSignatureType)
+        {
+            case "PerformanceScoreCardSignature":
+                Toast.makeText(getApplicationContext(),"Performace Review Saved.", Toast.LENGTH_LONG).show();
+                ArrayList<AndroidAppointment> myappointments;
+                Intent intent = new Intent(getApplicationContext(), InstallSetAppointment.class);
 
-            Intent i = new Intent(getApplicationContext(), ApendixActivity.class);
+                myappointments = getAppointmentsData();
+                RequestID = Integer.parseInt(dbManager.getValue( "RequestID"));
 
-            i.putExtra("StoreNameURN", globalStoreNameURN);
-            i.putExtra("ID", mGlobalStoreID);
-            i.putExtra("YourName", yourname);
-            i.putExtra("Designation", designation);
-            startActivity(i);
+                //Sending data to another Activity
+                AndroidAppointment appointment = findAppointmentByID(RequestID, myappointments);
+
+                intent.putExtra("ID", appointment.getID());
+                intent.putExtra("Mileage", appointment.getMileage());
+                intent.putExtra("StoreID", appointment.getStoreID());
+
+
+                intent.putExtra("RequestTypeName", appointment.getRequestTypeName());
+                intent.putExtra("BrandName", appointment.getBrandName());
+                intent.putExtra("OutletTypeName", appointment.getOutletTypeName());
+                intent.putExtra("TierTypeName", appointment.getTierTypeName());
+
+                String StoreName = appointment.getStoreName();
+                String StoreNameURN = appointment.getStoreNameURN();
+
+                intent.putExtra("StoreName", StoreName);
+                intent.putExtra("StoreNameURN", StoreNameURN);
+                intent.putExtra("URN", appointment.getURN());
+                intent.putExtra("CurrentPhase", appointment.getCurrentPhase());
+                intent.putExtra("ContactPerson", appointment.getContactPerson());
+                intent.putExtra("ContactEmail", appointment.getContactEmail());
+                intent.putExtra("ContactPhone", appointment.getContactPhone());
+                intent.putExtra("OpeningTime", appointment.getOpeningTime());
+                intent.putExtra("ClosingTime", appointment.getClosingTime());
+                intent.putExtra("TotalUnitCount", appointment.getTotalUnitCount());
+                intent.putExtra("StoreID", appointment.getStoreID());
+                intent.putExtra("DateRequested", appointment.getDateRequested());
+                intent.putExtra("DateAccepted", appointment.getDateAccepted());
+                intent.putExtra("AppointmentDateTime", appointment.getAppointmentDateTime());
+                intent.putExtra("AppointmentDateDay", appointment.getAppointmentDateDay());
+                intent.putExtra("AppointmentDateMonth", appointment.getAppointmentDateMonth());
+                intent.putExtra("AppointmentDateYear", appointment.getAppointmentDateYear());
+                intent.putExtra("AppointmentDateTimeTime", appointment.getAppointmentDateTimeTime());
+                intent.putExtra("DateConfirmed", appointment.getDateConfirmed());
+                intent.putExtra("DateRecordChanged", appointment.getDateRecordChanged());
+                intent.putExtra("Address", appointment.getAddress());
+                intent.putExtra("Region", appointment.getRegion());
+                intent.putExtra("BrandName", appointment.getBrandName());
+                intent.putExtra("OutletTypeName", appointment.getOutletTypeName());
+                intent.putExtra("TierTypeName", appointment.getTierTypeName());
+
+                startActivity(intent);
+                finish();
+                break;
+
+
+            case "SurveySignature":
+                Toast.makeText(getApplicationContext(),"Survey Sign Off Successful", Toast.LENGTH_LONG).show();
+                Intent intent2 = new Intent(getApplicationContext(), InstallHome.class);
+                startActivity(intent2);
+                finish();
+                break;
+
+            case "InstallationSignature":
+                Toast.makeText(getApplicationContext(),"Installation Sign Off Successful", Toast.LENGTH_LONG).show();
+                Intent intent3 = new Intent(getApplicationContext(), InstallHome.class);
+                startActivity(intent3);
+                finish();
+                break;
+
+            default: break;
         }
-        else {
-
-            Intent i = new Intent(getApplicationContext(), SuccessActivity.class);
-
-            startActivity(i);
-        }
-
-       /* String ImageType = getIntent().getStringExtra("ImageType");
-        Integer ID = getIntent().getIntExtra("RequestID", 0);
-
-        if(ImageType.equals("StoreItemInStore")) {
-
-            AndroidStoreUnitExplicit s = new AndroidStoreUnitExplicit();
-
-            s.setBarcode(mNewBarcode);
-            Integer storeItemID = me.getIntExtra("StoreItemID",0);
-            SaveStoreItemToArray(s, storeItemID);
-
-            Intent intent = new Intent(UploadPhoto.this, InstallUnitaryList.class);
-            intent.putExtra("Toast", "Upload unit image successful.");
-            intent.putExtra("StoreName", mStoreName);
-            intent.putExtra("URN", mURN);
-            intent.putExtra("StoreNameURN", mStoreNameURN);
-            intent.putExtra("RequestID", getIntent().getIntExtra("RequestID",0));
-            startActivity(intent); finish();
-        }
-        else {
-
-            //SurveyStoreItemLocation
-            //       SurveyStoreExterior
-            //SurveyStoreInterior
-
-            if(ImageType.equals("BarcodeOnUnit")||ImageType.equals("SurveyStoreItemLocation")) {
-
-                AndroidStoreUnitExplicit s = new AndroidStoreUnitExplicit();
-
-                s.setBarcode(mNewBarcode);
-                s.setAcceptedByStore(me.getIntExtra("AcceptedByStore", mAcceptedByStore));
-                Integer storeItemID = me.getIntExtra("StoreItemID",0);
-                SaveStoreItemToArray(s, storeItemID);
-
-                Intent intent = new Intent(UploadPhoto.this, InstallUnitaryList.class);
-                intent.putExtra("Toast", "Upload successful.");
-                intent.putExtra("StoreName", mStoreName);
-                intent.putExtra("URN", mURN);
-                intent.putExtra("StoreNameURN", mStoreNameURN);
-                intent.putExtra("RequestID", getIntent().getIntExtra("RequestID",0));
-                startActivity(intent); finish();
-            }
-            else {
-
-                if(ImageType.equals("SurveyStoreExterior")||ImageType.equals("SurveyStoreInterior"))
-                {
-                    Intent intent = new Intent(UploadPhoto.this, InstallUnitaryList.class);
-                    intent.putExtra("Toast", "Upload successful.");
-                    intent.putExtra("StoreName", mStoreName);
-                    intent.putExtra("URN", mURN);
-                    intent.putExtra("StoreNameURN", mStoreNameURN);
-                    intent.putExtra("RequestID", getIntent().getIntExtra("RequestID",0));
-                    startActivity(intent); finish();
-
-                }
-                else {
-
-                    Intent intent = new Intent(UploadPhoto.this, InstallSetAppointment.class);
-
-                    if (ImageType.equals("JobCardIns")) {
-
-                        AndroidDocumentType documentType = new AndroidDocumentType();
-                        SaveDocumentTypeToArray(documentType, mStoreID); // this will increment the count
-                        mDocCount++;
-                        intent.putExtra("Toast", "Upload Job card page "+  mJobCardPage.toString() +" successful. Total Job card pages = "+ mDocCount.toString());
-                    }
-                    if (ImageType.equals("ProductComplaint")) {
-                        intent.putExtra("Toast", "Upload product complaint successful.");
-                    }
-                    String storesString = Local.Get(getApplicationContext(), "AndroidInsAppointments");
-
-                    ArrayList<AndroidAppointment> appointments = JsonUtil.parseJsonArrayAndroidAppointment(storesString);
-
-                    //Convert request to appointment
-                    AndroidAppointment appointment = findAppointmentByID(ID, appointments);
-                    intent.putExtra("RequestID", getIntent().getIntExtra("RequestID", 0));
-                    intent.putExtra("ID", appointment.getID());
-                    intent.putExtra("StoreID", appointment.getStoreID());
-                    intent.putExtra("RequestTypeName", appointment.getRequestTypeName());
-                    intent.putExtra("BrandName", appointment.getBrandName());
-                    intent.putExtra("OutletTypeName", appointment.getOutletTypeName());
-                    intent.putExtra("TierTypeName", appointment.getTierTypeName());
-
-                    intent.putExtra("StoreName", appointment.getStoreName());
-                    intent.putExtra("StoreNameURN", appointment.getStoreNameURN());
-                    intent.putExtra("URN", appointment.getURN());
-                    intent.putExtra("CurrentPhase", appointment.getCurrentPhase());
-                    intent.putExtra("ContactPerson", appointment.getContactPerson());
-                    intent.putExtra("ContactEmail", appointment.getContactEmail());
-                    intent.putExtra("ContactPhone", appointment.getContactPhone());
-                    intent.putExtra("OpeningTime", appointment.getOpeningTime());
-                    intent.putExtra("ClosingTime", appointment.getClosingTime());
-                    intent.putExtra("TotalUnitCount", appointment.getTotalUnitCount());
-                    intent.putExtra("StoreID", appointment.getStoreID());
-                    intent.putExtra("DateRequested", appointment.getDateRequested());
-                    intent.putExtra("DateAccepted", appointment.getDateAccepted());
-                    intent.putExtra("AppointmentDateTime", appointment.getAppointmentDateTime());
-                    intent.putExtra("AppointmentDateDay", appointment.getAppointmentDateDay());
-                    intent.putExtra("AppointmentDateMonth", appointment.getAppointmentDateMonth());
-                    intent.putExtra("AppointmentDateYear", appointment.getAppointmentDateYear());
-                    intent.putExtra("AppointmentDateTimeTime", appointment.getAppointmentDateTimeTime());
-                    intent.putExtra("DateConfirmed", appointment.getDateConfirmed());
-                    intent.putExtra("DateRecordChanged", appointment.getDateRecordChanged());
-                    intent.putExtra("Address", appointment.getAddress());
-                    intent.putExtra("Territory", appointment.getTerritory());
-
-                    intent.putExtra("BrandName", appointment.getBrandName());
-                    intent.putExtra("OutletTypeName", appointment.getOutletTypeName());
-                    intent.putExtra("TierTypeName", appointment.getTierTypeName());
 
 
-                    startActivity(intent); finish();
-                }
-            }
-        }
-        //Sending data to another Activity
-*/
+
+
+
+
+
+
+
+            /*
+
+
+      */
 
 
     }
 
 
+    private ArrayList<AndroidAppointment> getAppointmentsData() {
+        ArrayList<AndroidAppointment> appointments = new ArrayList<>();
+        String json = "";
+        json = dbManager.getValue( "AndroidInsAppointments");
+        try {
+            appointments = JsonUtil.parseJsonArrayAndroidAppointment(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return appointments;
+    }
+
+    public AndroidAppointment findAppointmentByID(int id, ArrayList<AndroidAppointment> requests){
+        for (AndroidAppointment request : requests) {
+            if (request.getID() == id) {
+                return request;
+            }
+        }
+        return null;
+    }
 
 }
