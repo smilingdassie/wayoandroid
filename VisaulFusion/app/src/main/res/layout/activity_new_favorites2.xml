@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_activty"
-    tools:context="com.example.donavan.visaulfusion.NewFavorites1"
+    tools:context="com.dsouchon.wayo.visualfusion.NewFavorites1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
@@ -39,7 +39,11 @@
                 android:layout_marginBottom="40dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:textSize="20dp" />
+                android:text=
+                "* Were units placed in the correct positions as per agreed guidelines on placement and height.
+            * Zoning: Were units positioned in such a way as to create impact or experience zones for the brand.
+            * Confirm that no units have been placed over existing branding"
+            android:textSize="12dp" />
         </LinearLayout>
 
         <LinearLayout

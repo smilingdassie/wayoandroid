@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/install_set_appointment_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.example.donavan.visaulfusion.InstallSetAppointment">
+    tools:context="com.dsouchon.wayo.visualfusion.InstallSetAppointment">
 
 
     <ScrollView
@@ -33,49 +33,17 @@
                     android:layout_weight="1">
 
                     <TextView
-
-                        android:hint="Store"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtStoreNameLbl"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:hint="[Store Name]"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/txtStoreName"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-
-                        android:layout_weight="1" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-
-                        android:hint="URN"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txtURNLbl"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#efefef"
+                        android:hint="[Store Name]"
+                        android:textColor="#484848"
 
-                        android:layout_weight="1" />
+                        android:textColorHint="#8f8f8f"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:hint="[URN]"
@@ -86,7 +54,7 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
                 </LinearLayout>
 
@@ -97,17 +65,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-                    <TextView
-                        android:hint="Contact Person"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtContactPersonLbl"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-
-                        android:layout_weight="1" />
 
                     <TextView
                         android:hint="[Contact Person]"
@@ -118,28 +75,9 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
-                </LinearLayout>
 
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:hint="Contact Email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtContactEmailLbl"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-
-                        android:layout_weight="1" />
 
                     <TextView
                         android:hint="[Contact Email]"
@@ -150,7 +88,7 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
                 </LinearLayout>
 
@@ -169,7 +107,7 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
 
                     <TextView
@@ -181,7 +119,7 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
                 </LinearLayout>
 
@@ -200,7 +138,7 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
 
                     <TextView
@@ -212,7 +150,7 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
                 </LinearLayout>
 
@@ -231,7 +169,7 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
 
                     <TextView
@@ -243,7 +181,7 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
                 </LinearLayout>
 
@@ -255,48 +193,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-                    <TextView
-                        android:hint="Total Units "
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtTotalUnitCountLbl"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:hint="[Total Units]"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtTotalUnitCount"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-
-                        android:layout_weight="1" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:hint="Progress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtCurrentPhaseLbl"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1" />
 
                     <TextView
                         android:hint="[Progress]"
@@ -307,29 +203,10 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
 
 
-                </LinearLayout>
-
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TextView
-                    android:hint="Address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtAddressLbl"
-                    android:backgroundTint="#efefef"
-                    android:textColor="#484848"
-                    android:textColorHint="#8f8f8f"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1" />
 
                 <TextView
                     android:hint="[Address]"
@@ -340,7 +217,7 @@
                     android:textColor="#484848"
                     android:textColorHint="#8f8f8f"
                     android:layout_marginTop="10dp"
-
+                    android:textSize="12sp"
                     android:layout_weight="1" />
 
 
@@ -353,16 +230,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <TextView
-                android:hint="Region"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtRegionLbl"
-                android:backgroundTint="#efefef"
-                android:textColor="#484848"
-                android:textColorHint="#8f8f8f"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1" />
 
             <TextView
                 android:hint="[Region]"
@@ -373,31 +240,9 @@
                 android:textColor="#484848"
                 android:textColorHint="#8f8f8f"
                 android:layout_marginTop="10dp"
-
+                android:textSize="12sp"
                 android:layout_weight="1" />
 
-
-
-
-
-
-        </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:hint="Brand"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/Brandlbl"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1" />
 
                     <TextView
                         android:hint="[Brand]"
@@ -408,7 +253,7 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
 
 
@@ -423,16 +268,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-                    <TextView
-                        android:hint="Outlet Type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtOutletTypeLbl"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1" />
 
                     <TextView
                         android:hint="[Outlet Type]"
@@ -443,32 +278,10 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
 
 
-
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:hint="Tier Type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtTierTypeLbl"
-                        android:backgroundTint="#efefef"
-                        android:textColor="#484848"
-                        android:textColorHint="#8f8f8f"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1" />
 
                     <TextView
                         android:hint="[Tier Type]"
@@ -479,16 +292,41 @@
                         android:textColor="#484848"
                         android:textColorHint="#8f8f8f"
                         android:layout_marginTop="10dp"
-
+                        android:textSize="12sp"
                         android:layout_weight="1" />
 
 
-
-
-
-
                 </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
+                    <TextView
+                        android:hint="Total Units"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/lblTotalUnits"
+                        android:backgroundTint="#efefef"
+                        android:textColor="#484848"
+                        android:textColorHint="#8f8f8f"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:hint="[Total Units]"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtTotalUnitCount"
+                        android:backgroundTint="#efefef"
+                        android:textColor="#484848"
+                        android:textColorHint="#8f8f8f"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp"
+                        android:layout_weight="1" />
+                </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -531,7 +369,7 @@
                 android:id="@+id/ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true">
@@ -539,7 +377,7 @@
                 <Button
                     android:id="@+id/btnCheckin"
                     android:onClick="GpsCheckin"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:text="Check In"
                     android:backgroundTint="#fdc313"
@@ -548,54 +386,107 @@
                     android:layout_marginRight="10dp" />
 
                 <Button
-                    android:id="@+id/btnSurvey"
-                    android:onClick="Survey"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="Survey"
-                    android:backgroundTint="#fdc313"
-                    android:textColor="#ffffff"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:visibility="invisible"
-                    />
-
-                <Button
-                    android:id="@+id/btn2"
-                    android:onClick="Uploads"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="Upload"
-                    android:backgroundTint="#fdc313"
-                    android:textColor="#ffffff"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
-
-                <Button
                     android:id="@+id/btnCheckout"
                     android:onClick="GpsCheckOut"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:text="Check Out"
                     android:backgroundTint="#fdc313"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="20dp" />
+                    android:visibility="gone"
+                    />
 
                 <Button
-                    android:id="@+id/btn4"
-                    android:onClick="ConfirmAppointment"
-                    android:layout_width="match_parent"
+                    android:id="@+id/btnSurvey"
+                    android:onClick="Survey"
+                    android:layout_width="100dp"
                     android:layout_height="60dp"
-                    android:text="Confirm Appointment"
+                    android:text="Survey"
                     android:backgroundTint="#fdc313"
                     android:textColor="#ffffff"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="20dp"
                     android:visibility="gone"
                     />
+            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/l2l"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                    <Button
+                        android:id="@+id/btn2"
+                        android:layout_width="100dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:backgroundTint="#fdc313"
+                        android:onClick="Uploads2"
+                        android:text="Unitry"
+                        android:textColor="#ffffff" />
+                    <Button
+                        android:id="@+id/btnOtherUploads"
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:backgroundTint="#fdc313"
+                        android:onClick="OtherUploads"
+                        android:text="Other Uploads"
+                        android:textColor="#ffffff" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/l23l"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+                <Button
+                    android:id="@+id/btnPerformanceReview"
+                    android:onClick="PerformanceReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Performance Review"
+                    android:backgroundTint="#fdc313"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="1dp"
+                    android:visibility="gone"
+                    />
+                    <Button
+                        android:id="@+id/btnSignOff"
+                        android:onClick="SignOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:text="Sign Off"
+                        android:backgroundTint="#fdc313"
+                        android:textColor="#ffffff"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:visibility="visible"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+
 
 
 
@@ -604,18 +495,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <TextView
-        android:text="ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="31dp"
-        android:visibility="gone"
-        android:id="@+id/txtID" />
 
 
-</RelativeLayout>
+</LinearLayout>

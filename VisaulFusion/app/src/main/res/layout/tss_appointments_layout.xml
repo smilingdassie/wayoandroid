@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.example.donavan.visaulfusion.TssAppointments">
+    tools:context="com.dsouchon.wayo.visualfusion.TssAppointments">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

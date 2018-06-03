@@ -3,7 +3,7 @@
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/activity_login_activty"
-tools:context="com.example.donavan.visaulfusion.UploadPhoto"
+tools:context="com.dsouchon.wayo.visualfusion.UploadPhoto"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:padding="30dp"
@@ -150,15 +150,15 @@ android:background="@drawable/backgroud_gradient">
             android:textSize="18dp"
             android:textColorHint="#8f8f8f"
             android:layout_marginTop="20dp"
-
+            android:visibility="gone"
             />
 
         <RadioGroup
             android:id="@+id/radioJobCardType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <RadioButton
                 android:text="1"

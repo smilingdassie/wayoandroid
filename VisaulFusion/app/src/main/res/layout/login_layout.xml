@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_activty"
-    tools:context="com.example.donavan.visaulfusion.LoginActivity"
+    tools:context="com.dsouchon.wayo.visualfusion.LoginActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
@@ -55,7 +55,7 @@
                 android:text="Wayo "
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
 
@@ -70,27 +70,31 @@
                 android:textColorHint="#8f8f8f"
                 android:minWidth="350dp"
                 android:maxWidth="100dp"
-                android:minHeight="60dp"
+                android:minHeight="50dp"
                 android:layout_gravity="center_vertical|center_horizontal"
                 />
 
 
             <EditText
-                android:inputType="textPassword"
                 android:id="@+id/editPassword"
-                android:hint="Password"
-                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#efefef"
-                android:textColor="#484848"
-                android:textColorHint="#8f8f8f"
-                android:minWidth="350dp"
-                android:maxWidth="100dp"
-                android:minHeight="60dp"
                 android:layout_gravity="center_vertical|center_horizontal"
+                android:backgroundTint="#efefef"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxWidth="100dp"
+                android:minHeight="50dp"
+                android:minWidth="350dp"
+                android:text=""
+                android:textColor="#484848"
+                android:textColorHint="#8f8f8f" />
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Skip News. App v3.16"
                 />
-
 
 
             <Button
@@ -104,13 +108,10 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:textColor="#ffffff"
                 android:backgroundTint="#fdc313"
+
                 />
-            <TextView
-                android:text="app v2.0"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView8"
-                android:textSize="14sp" />
+
+
 
 
 
@@ -127,7 +128,7 @@
         android:visibility="visible"
         android:textColor="#ffffff"
 
-        />
+        android:id="@+id/button12" />
 
 
 </RelativeLayout>

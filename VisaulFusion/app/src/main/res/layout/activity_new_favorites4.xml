@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_activty"
-    tools:context="com.example.donavan.visaulfusion.NewFavorites1"
+    tools:context="com.dsouchon.wayo.visualfusion.NewFavorites1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
@@ -39,8 +39,10 @@
                 android:layout_marginBottom="40dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:text=" "
-                android:textSize="20dp" />
+                android:text="* Are all units that have been installed with illumination lighting up?
+* If not, is it because there are no available sockets within 5m of the unit?
+"
+                android:textSize="12dp" />
         </LinearLayout>
 
         <LinearLayout

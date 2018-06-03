@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_activty"
-    tools:context="com.example.donavan.visaulfusion.RepExtraDetailsActivity"
+    tools:context="com.dsouchon.wayo.visualfusion.RepExtraDetailsActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroud_gradient"
@@ -50,7 +50,7 @@
         <Button
             android:text="Next"
             android:id="@+id/viewstore"
-            android:onClick="stockinput (RepExtraDetailsActivity)"
+            android:onClick="stockinput"
             android:drawableRight="@drawable/arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

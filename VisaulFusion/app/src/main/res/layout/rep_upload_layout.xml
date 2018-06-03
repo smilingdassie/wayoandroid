@@ -7,7 +7,7 @@
     android:padding="20dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_activty"
-    tools:context="com.example.donavan.visaulfusion.RepSelectStoreForUnitry"
+    tools:context="com.dsouchon.wayo.visualfusion.RepSelectStoreForUnitry"
     android:orientation="vertical"
     android:background="@drawable/backgroud_gradient"
     >

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_activty"
-    tools:context="com.example.donavan.visaulfusion.LoginActivity"
+    tools:context="com.dsouchon.wayo.visualfusion.LoginActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
@@ -24,7 +24,12 @@
             android:layout_height="fill_parent"
             android:layout_weight="2">
 
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/textView1"
+                android:text="TextView1" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -100,7 +105,7 @@
 
 
                 <Button
-                    android:text="Installation Team"
+                    android:text="Installation"
                     android:onClick="InstLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -114,7 +119,7 @@
                     android:id="@+id/btnIns" />
 
                 <Button
-                    android:text="Survey Team"
+                    android:text="Survey"
                     android:onClick="SrvLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

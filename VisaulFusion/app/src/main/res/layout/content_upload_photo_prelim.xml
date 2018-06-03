@@ -10,14 +10,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.donavan.visaulfusion.UploadPhotoPrelim"
+    tools:context="com.dsouchon.wayo.visualfusion.UploadPhotoPrelim"
     tools:showIn="@layout/activity_upload_photo_prelim">
+
 
     <TextView
         android:text="What would you like to do?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentTop="false"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView7"
@@ -43,8 +44,27 @@
         android:textSize="18sp" />
 
     <Button
-        android:text="Upload Barcode"
+        android:id="@+id/btnBarcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView7"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="132dp"
+        android:backgroundTint="#fdc313"
+        android:maxWidth="100dp"
+        android:minHeight="60dp"
+        android:minWidth="350dp"
         android:onClick="UploadBarcode"
+        android:text="Scan Missing Barcode"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        />
+
+    <Button
+        android:text="Unitry Complaint"
+        android:onClick="UnitryComplaint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="350dp"
@@ -53,11 +73,11 @@
         android:layout_gravity="center_horizontal"
         android:textColor="#ffffff"
         android:backgroundTint="#fdc313"
-        android:id="@+id/btnBarcode"
-        android:layout_below="@+id/textView7"
+        android:id="@+id/btnUnitComplaint"
+        android:layout_below="@+id/btnBarcode"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="61dp"
         android:textSize="18sp" />
 
 

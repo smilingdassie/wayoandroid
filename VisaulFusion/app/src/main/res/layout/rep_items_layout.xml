@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_activty"
-    tools:context="com.example.donavan.visaulfusion.RepItemsActivity"
+    tools:context="com.dsouchon.wayo.visualfusion.RepItemsActivity"
     android:background="@drawable/backgroud_gradient">
     >
 

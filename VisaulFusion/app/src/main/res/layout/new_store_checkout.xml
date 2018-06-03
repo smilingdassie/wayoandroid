@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_activty"
-    tools:context="com.example.donavan.visaulfusion.RepInfoActivity"
+    tools:context="com.dsouchon.wayo.visualfusion.RepInfoActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -37,7 +37,7 @@
                 android:textStyle="bold"
                 android:textColorHint="#8f8f8f"
                 android:layout_marginTop="10dp"
-
+                android:text="Store name"
                 android:layout_weight="1" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:textStyle="bold"
                 android:textColorHint="#8f8f8f"
                 android:layout_marginTop="10dp"
-
+                android:text="URN"
                 android:layout_weight="1" />
 
 
@@ -63,37 +63,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
+            <TextView
+
+
+                android:id="@+id/txtReasonForIncomplete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#efefef"
+                android:text="All Complete. Good Job!"
+                android:textColor="#000000"
+                android:textColorHint="#8f8f8f"
+                android:textSize="20dp"
+                />
 
 
         </LinearLayout>
 
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
 
-        </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="136dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
 
             <Spinner
                 android:id="@+id/spinnerInstallStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+
+                />
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#a9a9a9"></LinearLayout>
-
-
+                android:background="#a9a9a9"
+                android:orientation="vertical"></LinearLayout>
 
 
         </LinearLayout>
@@ -107,68 +117,8 @@
 
 
         </LinearLayout>
-        <TextView
-
-            android:text="Gps Co-ordinates:"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/two"
-            android:textSize="20dp"
-            android:backgroundTint="#efefef"
-            android:textColor="#000000"
-            android:textColorHint="#8f8f8f"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-
-            android:layout_weight="1" />
-        <TextView
-
-            android:hint="Gps Co-ordinates:"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtGpsLatLng"
-            android:textSize="20dp"
-            android:backgroundTint="#efefef"
-            android:textColor="#000000"
-            android:textColorHint="#8f8f8f"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-
-            android:layout_weight="1" />
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#a9a9a9">
 
 
-
-
-        </LinearLayout>
-        <TextView
-            android:text="Enter Mileage:"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView6"
-            android:layout_weight="1"
-            android:layout_marginTop="40dp"
-            android:textSize="20sp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:text="0"
-            android:hint="Enter Mileage"
-            android:backgroundTint="#efefef"
-            android:textColor="#484848"
-            android:textColorHint="#8f8f8f"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
-            android:id="@id/editMileage"
-
-            />
     </LinearLayout>
 
     <LinearLayout
@@ -184,22 +134,15 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="10dp"
-            android:text="Checkout"
+            android:text="Check out"
             android:backgroundTint="#fdc313"
+            android:textSize="24sp"
             android:textColor="#ffffff"/>
 
 
 
 
-        <Button
-            android:id="@+id/btn23"
-            android:onClick="Home"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            android:text="Home"
-            android:backgroundTint="#fdc313"
-            android:textColor="#ffffff"/>
+
 
         <Button
             android:id="@+id/btn1c"
