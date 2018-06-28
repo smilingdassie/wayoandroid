@@ -608,7 +608,7 @@ public class SurveyActivity extends AppCompatActivity {
 
                 boolean is = ss.getIsCommittedToInstallation();
 
-
+                // small change test
                 Spinner spinnerYesNo = (Spinner) findViewById(R.id.spinnerYesNo);
 
 
