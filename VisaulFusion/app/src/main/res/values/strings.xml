@@ -29,7 +29,7 @@
         <item>India</item>
     </string-array>
     <string name="title_activity_upload_photo_prelim">UploadPhotoPrelim</string>
-    <string name="agreement">I agree the terms and conditions.</string>
+    <string name="agreement">I agree to the terms and conditions.</string>
     <string name="clear_pad">Clear Pad</string>
     <string name="save_signature">Agree</string>
 
@@ -49,4 +49,6 @@
     <string name="empty_list_text">No records found</string>
     <string name="enter_desc">Currency</string>
     <string name="enter_title">Country</string>
+
+    <string name="checkbox">Skip News. App v3.20</string>
 </resources>

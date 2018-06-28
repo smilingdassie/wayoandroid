@@ -66,7 +66,7 @@
             <TextView
 
 
-                android:id="@+id/txtReasonForIncomplete"
+                android:id="@+id/txtHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -91,6 +91,7 @@
 
 
 
+
             <Spinner
                 android:id="@+id/spinnerInstallStatus"
                 android:layout_width="match_parent"
@@ -99,24 +100,11 @@
 
                 />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#a9a9a9"
-                android:orientation="vertical"></LinearLayout>
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#a9a9a9">
-
 
 
 
         </LinearLayout>
+
 
 
     </LinearLayout>
@@ -127,7 +115,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
-
+        <EditText
+            android:id="@+id/txtComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:hint="[Comment]"
+            android:textSize="24sp"
+            android:visibility="visible"
+            android:inputType="textMultiLine"
+            />
         <Button
             android:id="@+id/btn3"
             android:onClick="CheckOut"
