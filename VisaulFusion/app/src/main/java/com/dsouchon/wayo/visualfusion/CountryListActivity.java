@@ -27,7 +27,7 @@ public class CountryListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+         super.onCreate(savedInstanceState);  dbManager = new DBManager(this);        dbManager.open();
 
         setContentView(R.layout.fragment_emp_list);
 

@@ -30,7 +30,7 @@ public class AddCountryActivity extends Activity implements View.OnClickListener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+         super.onCreate(savedInstanceState);  dbManager = new DBManager(this);        dbManager.open();
 
         setTitle("Add Record");
 

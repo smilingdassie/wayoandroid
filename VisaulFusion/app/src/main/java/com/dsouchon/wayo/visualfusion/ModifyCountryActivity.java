@@ -23,7 +23,7 @@ public class ModifyCountryActivity extends Activity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+         super.onCreate(savedInstanceState);  dbManager = new DBManager(this);        dbManager.open();
 
         setTitle("Modify Record");
 

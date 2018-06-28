@@ -46,7 +46,7 @@ int RequestID;
 
 
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+         super.onCreate(savedInstanceState);  dbManager = new DBManager(this);        dbManager.open();
         setContentView(R.layout.activity_other_uploads);
 
         String primaryRole = dbManager.getValue( "PrimaryRole");

@@ -35,7 +35,7 @@ public class GoodNews extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
-            super.onCreate(savedInstanceState);
+             super.onCreate(savedInstanceState);  dbManager = new DBManager(this);        dbManager.open();
             setContentView(R.layout.activity_good_news);
         }
         catch (Exception e)

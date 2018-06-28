@@ -77,7 +77,7 @@ public class SignatureActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+         super.onCreate(savedInstanceState);  dbManager = new DBManager(this);        dbManager.open();
         verifyStoragePermissions(this);
         setContentView(R.layout.signature_pad);
 

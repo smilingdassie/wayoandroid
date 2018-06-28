@@ -40,29 +40,19 @@ public class MapsActivitySlim extends AppCompatActivity implements LocationListe
     public double Lat;
     public double Lng;
     public boolean locationHasBeenCaptured;
-
+    public String mInstallOrSurveyStatus;
     private DBManager dbManager;
 
-    /************SET AND GET GLOBAL VARIABLES ******************/
-    public static void setDefaults(Context context, String key, String value) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(key, value);
-        editor.commit();
-    }
-    public static String getDefaultsOld(Context context,String key) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getString(key, "");
-    }
-    /******************************/
+    LocationManager locationManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+         super.onCreate(savedInstanceState);  dbManager = new DBManager(this);        dbManager.open();
         setContentView(R.layout.activity_maps_slim);
         locationHasBeenCaptured = false;
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+        //LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if(ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
@@ -73,6 +63,9 @@ public class MapsActivitySlim extends AppCompatActivity implements LocationListe
         Intent me = getIntent();
         mIsCheckIn = me.getBooleanExtra("IsCheckIn", true );
         RequestID = me.getIntExtra("RequestID", 0);
+
+        mInstallOrSurveyStatus = me.getStringExtra("mInstallOrSurveyStatus");
+
     }
 
 
@@ -96,7 +89,7 @@ public class MapsActivitySlim extends AppCompatActivity implements LocationListe
 
             try {
                 if (Lat == 0 && Lng == 0) {
-                    LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+
                     if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
                         location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -130,7 +123,7 @@ public class MapsActivitySlim extends AppCompatActivity implements LocationListe
                         Toast.makeText(this, "Only one checkin allowed per store per day.", Toast.LENGTH_LONG).show();
                     } else {
 
-                        HandleGpsCheckIn(mIsCheckIn, String.format("%f,%f", Lat, Lng), RequestID, "", 0);
+                        HandleGpsCheckIn(mIsCheckIn, String.format("%f,%f", Lat, Lng), RequestID, mInstallOrSurveyStatus, 0);
                     }
                 } else {
                     String CheckedOut = getIntent().getStringExtra("URN") + ":CheckedOut:" + Today;
@@ -140,7 +133,7 @@ public class MapsActivitySlim extends AppCompatActivity implements LocationListe
                     Toast.makeText(this, "Only one check out allowed per store per day.", Toast.LENGTH_LONG).show();
                 } else {*/
 
-                    HandleGpsCheckIn(mIsCheckIn, String.format("%f,%f", Lat, Lng), RequestID, "", 0);
+                    HandleGpsCheckIn(mIsCheckIn, String.format("%f,%f", Lat, Lng), RequestID, mInstallOrSurveyStatus, 0);
                     //}
                 }
 
@@ -168,6 +161,14 @@ public class MapsActivitySlim extends AppCompatActivity implements LocationListe
         // TODO Auto-generated method stub
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        locationManager.removeUpdates(this);
+        Log.i("Location Manager", "onPause, done");
+    }
+
 
 
     public void DisplayGps2(View view) {
@@ -204,9 +205,11 @@ public class MapsActivitySlim extends AppCompatActivity implements LocationListe
                     Toast.makeText(this, "Only one checkin allowed per store per day.", Toast.LENGTH_LONG).show();
                 } else {
 
-                    HandleGpsCheckIn(mIsCheckIn, String.format("%f,%f", Lat, Lng), RequestID, "", 0);
+                    HandleGpsCheckIn(mIsCheckIn, String.format("%f,%f", Lat, Lng), RequestID, mInstallOrSurveyStatus, 0);
                 }
-            } else {
+            }
+            else
+                {
                 String CheckedOut = getIntent().getStringExtra("URN") + ":CheckedOut:" + Today;
 
 
@@ -214,7 +217,7 @@ public class MapsActivitySlim extends AppCompatActivity implements LocationListe
                     Toast.makeText(this, "Only one check out allowed per store per day.", Toast.LENGTH_LONG).show();
                 } else {*/
 
-                HandleGpsCheckIn(mIsCheckIn, String.format("%f,%f", Lat, Lng), RequestID, "", 0);
+                HandleGpsCheckIn(mIsCheckIn, String.format("%f,%f", Lat, Lng), RequestID, mInstallOrSurveyStatus, 0);
                 //}
             }
 
